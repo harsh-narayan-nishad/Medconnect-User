@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Poppins", sans-serif;
+  color-scheme: #f4f4f4;
+  scroll-behavior: smooth;
+  --coquelicot: #03c316;
+  --chat : #046edc;
+}
+
+.live-btn {
+  background-color: var(--coquelicot);
+  color: var(--white);
+  padding: 3px;
+  border-radius: 50%;
+  
+  animation: pulse_live 1s ease infinite;
+}
+@keyframes pulse_live {
+  0% { box-shadow: 0 0 0 0 var(--coquelicot); }
+  100% { box-shadow: 0 0 0 7px transparent; }
+}
+
+
+.play-btn {
+  background-color: #f4f4f4;
+  color: var(--white);
+  width: max-content;
+  font-size: 30px;
+  padding: 3px;
+  border-radius: 50%;
+  margin-block: 25px 35px;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 var(--coquelicot); }
+  100% { box-shadow: 0 0 0 12px transparent; }
+}
+
+.voice-btn {
+  background-color: var(--voice);
+  
+  color: var(--white);
+  width: max-content;
+  font-size: 30px;
+  padding: 0;
+  border-radius: 50%;
+  margin-block: 25px 35px;
+  animation: pulse-btn 1.2s ease infinite;
+}
+
+
+@keyframes pulse-btn {
+  0% { box-shadow: 0 0 0 0 var(--voice); }
+  100% { box-shadow: 0 0 0 8px transparent; }
+}
+
+
+
+

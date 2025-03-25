@@ -1,9 +1,12 @@
 import { CheckCircle2 } from "lucide-react";
+import styled from "styled-components";
 import { pricingOptions } from "../constants";
 
 const Pricing = () => {
   return (
-    <div className="m-0 p-12 bg-black text-white">
+    <StyledWrapper>
+
+    <div className="pricing m-0 p-12 bg-black text-white">
       <h2 className="text-3xl sm:text-5xl lg:text-6xl text-center my-8 tracking-wide">
         Pricing
       </h2>
@@ -42,7 +45,22 @@ const Pricing = () => {
         ))}
       </div>
     </div>
+    </StyledWrapper>
   );
 };
 
+
+const StyledWrapper = styled.div`
+.pricing{
+width: 100%;
+height: 100%;
+background-image: radial-gradient(rgba(244, 244, 244, 0.35) 5%, transparent 5%),
+                  radial-gradient(rgba(244, 244, 244, 0.35) 5%, transparent 5%);
+background-size: 20px 20px; /* Keep density the same */
+background-position: 0 0, 10px 10px; /* Keep alignment the same */
+
+
+}
+
+`
 export default Pricing;

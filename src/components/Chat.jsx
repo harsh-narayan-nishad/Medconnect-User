@@ -13,7 +13,7 @@ const Chat = () => {
                   alt="Profile image 1"
                   className="w-16 h-16 rounded-full object-contain"
                   src={ChatImage}
-                />
+                /> 
               </button>
             </a>
           </div>

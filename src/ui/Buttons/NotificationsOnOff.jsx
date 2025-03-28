@@ -7,7 +7,7 @@ const Switch = () => {
       <div className="checkbox-wrapper-35 mr-1 pr-1">
         <input defaultValue="private" name="switch" id="switch" type="checkbox" className="switch" />
         <label htmlFor="switch" >
-          <span className="switch-x-text">Dark mode </span>
+          <span className="switch-x-text">Find Nearby </span>
           <span className="switch-x-toggletext">
             <span className="switch-x-unchecked"><span className="switch-x-hiddenlabel">Unchecked: </span>Off</span>
             <span className="switch-x-checked"><span className="switch-x-hiddenlabel">Checked: </span>On</span>
@@ -28,8 +28,8 @@ const StyledWrapper = styled.div`
     -webkit-align-items: center;
     -ms-flex-align: center;
     align-items: center;
-    // color: #78768d;
-    color: black;
+    color: #78768d;
+    // color: black;
     cursor: pointer;
     display: -webkit-box;
     display: -webkit-flex;
@@ -119,7 +119,9 @@ const StyledWrapper = styled.div`
   }
 
   .checkbox-wrapper-35 .switch:checked + label::before {
-    background-color: #ffb500;
+    // background-color: #ffb500;
+        background-color: green;
+
   }
 
   .checkbox-wrapper-35 .switch:checked + label::after {

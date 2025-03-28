@@ -22,6 +22,7 @@ const Button = () => {
 const StyledWrapper = styled.div`
   #heart {
     display: none;
+    
   }
 
   .like-button {
@@ -31,14 +32,14 @@ const StyledWrapper = styled.div`
     height: 48px;
     width: 136px;
     border-radius: 16px;
-    border: none;
-    // background-color: #1d1d1d;
+    // border: 1px solid white;
+    background-color: #1d1d1d;
     overflow: hidden;
-    box-shadow:
-      inset -2px -2px 5px rgba(255, 255, 255, 0.2),
-      inset 2px 2px 5px rgba(0, 0, 0, 0.1),
-      4px 4px 10px rgba(0, 0, 0, 0.4),
-      -2px -2px 8px rgba(255, 255, 255, 0.1);
+    // box-shadow:
+    //   inset -2px -2px 5px rgba(255, 255, 255, 0.2),
+    //   inset 2px 2px 5px rgba(0, 0, 0, 0.1),
+    //   4px 4px 10px rgba(0, 0, 0, 0.4),
+    //   -2px -2px 8px rgba(255, 255, 255, 0.1);
   }
 
   .like {

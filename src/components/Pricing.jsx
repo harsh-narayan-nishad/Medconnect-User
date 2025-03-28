@@ -6,7 +6,7 @@ const Pricing = () => {
   return (
     <StyledWrapper>
 
-    <div className="pricing m-0 p-12 bg-black text-white">
+    <div className="pricing m-0 p-12 bg-black text-white rounded-lg">
       <h2 className="text-3xl sm:text-5xl lg:text-6xl text-center my-8 tracking-wide">
         Pricing
       </h2>

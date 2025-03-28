@@ -5,7 +5,7 @@ import DocterCard from "../../ui/Cards/DoctorsList"
 
 const App = () => {
   return (
-    <div className="bg-[#f4f4f4">
+    <div className="bg-[#f4f4f4 px-5">
         <Navbar />
         <div className="max-w-7xl mx-auto pt-20 px-6">
   <div className="p-4">

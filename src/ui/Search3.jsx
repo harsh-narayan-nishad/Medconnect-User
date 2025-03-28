@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Loader from './Loader'; // Ensure this component exists and is correctly implemented
+import Loader from './Loader';
 
 const Input = () => {
   const navigate = useNavigate();
@@ -39,15 +39,18 @@ const Input = () => {
     setShowHistory(false);
     setLoading(true);
     document.body.style.cursor = 'none';
-    document.body.style.overflow = 'hidden'; // Hide scrollbar
+    document.body.style.overflow = 'hidden';  // Disable scrolling
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
     setTimeout(() => {
-      setLoading(false);
-      document.body.style.cursor = 'default';
-      document.body.style.overflow = 'auto'; // Restore scrollbar
-      navigate('/doctor-search');
-    }, 1000); // Loader chalega 1.5 sec tak
+      navigate('/doctor-search'); // ✅ Navigate first
+      setTimeout(() => {
+        setLoading(false); // ✅ Only stop loading after navigation is complete
+        document.body.style.overflow = 'auto';  
+        document.body.style.cursor = 'default';
+      }, 500); // Small delay to prevent home screen flicker
+    }, 1000);
   };
 
   if (loading) {
@@ -62,7 +65,7 @@ const Input = () => {
     <div className="relative" ref={historyRef}>
       <input
         placeholder="Search..."
-        className="input shadow-lg ring-1 ring-gray-300 focus:border-2 bg-white border-gray-300 px-5 py-3 rounded-xl w-[45vw] transition-all  outline-none"
+        className="input shadow-lg ring-1 ring-gray-300 focus:border-2 bg-white border-gray-300 px-5 py-3 rounded-xl w-[45vw] transition-all outline-none"
         type="search"
         value={searchTerm}
         onChange={(e) => {

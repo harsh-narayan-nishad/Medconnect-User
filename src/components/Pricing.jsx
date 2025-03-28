@@ -56,8 +56,8 @@ width: 100%;
 height: 100%;
 background-image: radial-gradient(rgba(244, 244, 244, 0.35) 5%, transparent 5%),
                   radial-gradient(rgba(244, 244, 244, 0.35) 5%, transparent 5%);
-background-size: 20px 20px; /* Keep density the same */
-background-position: 0 0, 10px 10px; /* Keep alignment the same */
+background-size: 20px 20px; 
+background-position: 0 0, 10px 10px; 
 
 
 }

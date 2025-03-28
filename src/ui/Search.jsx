@@ -82,7 +82,7 @@ const Input = () => {
         onKeyDown={handleKeyDown}
       />
       <svg
-        className="size-6 absolute top-3 right-3 text-gray-500 cursor-pointer"
+        className="size-6 bg-red-300 absolute top-3 right-3 text-gray-500 cursor-pointer"
         stroke="currentColor"
         strokeWidth="1.5"
         viewBox="0 0 24 24"

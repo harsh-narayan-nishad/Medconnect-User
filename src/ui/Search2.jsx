@@ -61,6 +61,8 @@ const Input = () => {
         name="search"
         type="search"
         value={searchTerm}
+        autoComplete="off"  // 🚀 Disable browser autofill
+
         onChange={(e) => {
           setSearchTerm(e.target.value);
           setShowHistory(e.target.value.length > 0); // Show history when user starts typing

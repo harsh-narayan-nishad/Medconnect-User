@@ -19,7 +19,7 @@ const StyledWrapper = styled.div`
   justify-content: center;
 
   .spinner {
-    font-size: 12px; /* Smaller size */
+    font-size: 15px; /* Smaller size */
     position: relative;
     width: 1em;
     height: 1em;

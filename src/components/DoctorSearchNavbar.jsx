@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { navItems } from "../constants";
 import SearchBox from "../ui/Search2";
-import DropDown from "../ui/Buttons/DropDown";
+import DropDown from "../ui/Buttons/DropDown"; 
 import DarkMode from "../ui/Buttons/NotificationsOnOff";
 import ProfilePopUp from "../ui/Cards/UserProfilePopUp";
 

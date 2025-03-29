@@ -100,7 +100,7 @@ const Login = () => {
   {loading ? (
     <>
       <Loader />
-      <span>Logging in...</span>
+      <span>Logging in</span>
     </>
   ) : (
     "Login"

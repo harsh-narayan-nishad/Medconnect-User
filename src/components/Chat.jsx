@@ -121,7 +121,7 @@ const Chat = () => {
             />
             <button
               onClick={handleSend}
-              className="ml-2 px-3 py-2 bg-gradient-to-r text-white from-orange-500 to-orange-800  rounded-md hover:bg-orange-800  "
+              className="ml-2 px-3 py-2 bg-gradient-to-r text-black from-orange-500 to-orange-800  rounded-md hover:bg-orange-800  "
             >
               Send
             </button>

@@ -93,7 +93,7 @@ const Login = () => {
           <button 
   type="submit" 
   className={`w-full py-3 rounded-lg font-medium text-white flex items-center justify-center gap-2 ${
-    loading ? "bg-gradient-to-r from-orange-500 to-red-800 cursor-not-allowed" : "bg-gradient-to-r from-orange-500 to-red-800"
+    loading ? "bg-gray-300 text-black cursor-not-allowed" : "bg-gradient-to-r from-orange-500 to-red-800"
   }`}
   disabled={loading}
 >

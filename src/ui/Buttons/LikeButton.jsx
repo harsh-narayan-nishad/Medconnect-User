@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import Location from './Location'
 
 const Button = () => {
   return (
     <StyledWrapper>
-      <div className="like-button bg-slate-950/50 hover:bg-slate-950/20">
-        <input className="on" id="heart" type="checkbox" />
+      <div className="like-button bg-slate-950/50 w-80 hover:bg-slate-950/20">
+        {/* <input className="on" id="heart" type="checkbox" /> */}
+        <Location/>
         <label className="like" htmlFor="heart">
           <svg className="like-icon" fillRule="nonzero" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
@@ -30,10 +32,10 @@ const StyledWrapper = styled.div`
     cursor: pointer;
     display: flex;
     height: 48px;
-    width: 136px;
+    width: ;
     border-radius: 16px;
-    // border: 1px solid white;
-    background-color: #1d1d1d;
+    border: 1px solid black;
+    background-color: #fff;
     overflow: hidden;
     // box-shadow:
     //   inset -2px -2px 5px rgba(255, 255, 255, 0.2),

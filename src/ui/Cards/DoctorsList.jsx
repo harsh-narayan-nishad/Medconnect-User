@@ -54,7 +54,7 @@ const DoctorProfileCard = () => {
                 <button 
                     className="flex-1 bg-gray-200 text-gray-800 font-medium py-2 rounded-xl hover:bg-gray-300"
                 >
-                    Message
+                    Join
                 </button>
             </div>
             

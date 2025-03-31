@@ -16,9 +16,10 @@ const AppRoutes = () => {
         <Route path ="doctor-search" element={<DoctorSearch/>} />
         <Route path = "user-dashboard" element={<UserDashboard/>} />
         <Route path = "appointment" element={<AppointmentSchedule />} />
+ 
       </Routes>
     </Router>
   );
 };
-
+// 
 export default AppRoutes;

@@ -1,7 +1,7 @@
 import Navbar from "../Navbar";
 import HeroSection from "../HeroSection";
 import QrCode from "../QrCode";
-import Workflow from "../Workflow";
+
 import Footer from "../Footer";
 import Pricing from "../Pricing";
 import Testimonials from "../Testimonials";

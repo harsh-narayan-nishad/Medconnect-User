@@ -1,8 +1,11 @@
 import { features } from "../constants";
 
+import QRCode_generator from "./QrCodeGenerator";
+
+
 const FeatureSection = () => {
   return (
-    <div className="relative mt-20 border-b border-neutral-800 min-h-[800px]">
+    <div className="relative mt-20  ">
       <div className="text-center">
         <span className="bg-neutral-900 text-orange-500 rounded-full h-6 text-sm font-medium px-2 py-1 uppercase">
           Profile
@@ -29,10 +32,16 @@ const FeatureSection = () => {
         </p>
       </div>
     </div>
+
+
   </div>
 )}
 
-      </div>
+    <QRCode_generator />     
+      
+ 
+    </div>
+
     </div>
   );
 };

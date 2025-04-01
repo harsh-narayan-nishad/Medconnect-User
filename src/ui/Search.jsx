@@ -69,7 +69,7 @@ const Input = () => {
   return (
     <div className="relative" ref={historyRef}>
       <input
-        placeholder="Search..."
+        placeholder="Search for doctors..."
         className="input shadow-lg ring-1 ring-gray-300 focus:border-2 bg-white border-gray-300 px-5 py-3 rounded-xl w-[40vw] transition-all focus:w-[50vw] outline-none"
         name="search"
         type="search"

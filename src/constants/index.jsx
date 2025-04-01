@@ -5,6 +5,8 @@ import { ShieldHalf } from "lucide-react";
 import { PlugZap } from "lucide-react";
 import { GlobeLock } from "lucide-react";
 import qrCodeImage from "../assets/qr-code-1.png";
+import QrCode from "../components/QrCode";
+
 
 import user1 from "../assets/profile-pictures/user1.jpg";
 import user2 from "../assets/profile-pictures/user2.jpg";
@@ -20,6 +22,15 @@ export const navItems = [
   { label: "Testimonials", href: "#" },
 ];
 
+export const qrCode = [
+  {
+    icon: <Fingerprint />,
+    text: "Multi-Device Access",
+    description:
+      "Access your medical records, prescriptions, and consultations seamlessly across mobile, desktop, and tablets.",
+      
+  }
+];
 export const testimonials = [
   {
     user: "Dr. Aryan Mehta",
@@ -71,6 +82,8 @@ export const features = [
     text: "Multi-Device Access",
     description:
       "Access your medical records, prescriptions, and consultations seamlessly across mobile, desktop, and tablets.",
+    // description:
+    //  <QrCode />,
   },
   {
     icon: <ShieldHalf />,

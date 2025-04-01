@@ -2,7 +2,7 @@ import Navbar from "../Navbar";
 
 import Footer from "../Footer";
 import { features } from "../../constants/index";
-
+import FeedbackStars from "../../ui/FeedBackStar";
 
 
 const AppointmentSchedule = () => {
@@ -22,6 +22,9 @@ const AppointmentSchedule = () => {
                  Your Health
                  </span>
                </h2>
+             </div>
+             <div>
+              <FeedbackStars />
              </div>
              <div className="flex flex-wrap mt-10 lg:mt-20">
              {features.map((feature, index) => (

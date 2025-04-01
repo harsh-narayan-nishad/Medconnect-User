@@ -30,7 +30,7 @@ const Navbar = () => {
           
           <div className="hidden lg:flex justify-center space-x-12 items-center">
             <div className="hidden lg:flex justify-center space-x-4 items-center">
-              <ul>
+              <ul className="cursor-pointer" onClick={() => navigate("/user-dashboard")}>
                 {userName ? userName : "Research"}
               </ul>
               {!userName ? (

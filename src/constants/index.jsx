@@ -5,7 +5,9 @@ import { ShieldHalf } from "lucide-react";
 import { PlugZap } from "lucide-react";
 import { GlobeLock } from "lucide-react";
 import qrCodeImage from "../assets/qr-code-1.png";
-import QrCode from "../components/QrCode";
+import { QrCode, UserCircle } from "lucide-react";
+import { Link } from "react-router-dom";
+
 
 
 import user1 from "../assets/profile-pictures/user1.jpg";
@@ -22,14 +24,27 @@ export const navItems = [
   { label: "Testimonials", href: "#" },
 ];
 
+
+
 export const qrCode = [
   {
     icon: <Fingerprint />,
     text: "Multi-Device Access",
     description:
       "Access your medical records, prescriptions, and consultations seamlessly across mobile, desktop, and tablets.",
-      
-  }
+  },
+  {
+    icon: <Link to="/qr-code-sharing"><QrCode /></Link>, // Added routing
+    text: <Link to="/qr-code-sharing">QR Code Sharing</Link>, // Wrapped text in Link
+    description:
+      "Easily share and access digital prescriptions or medical records using secure QR codes.",
+  },
+  {
+    icon: <UserCircle />,
+    text: "Patient Profile",
+    description:
+      "Manage and update your personal health details, prescriptions, and reports all in one place.",
+  },
 ];
 export const testimonials = [
   {
@@ -78,7 +93,7 @@ export const features = [
       "Get instant health insights with our AI-driven symptom checker before consulting a doctor.",
   },
   {
-    icon: <Fingerprint />,
+    icon: <QrCode />,
     text: "Multi-Device Access",
     description:
       "Access your medical records, prescriptions, and consultations seamlessly across mobile, desktop, and tablets.",
@@ -110,8 +125,6 @@ export const features = [
       "Track and analyze your health metrics with AI-powered insights and recommendations.",
   },
 ];
-
-
 
 export const pricingOptions = [
   {
@@ -173,7 +186,7 @@ export const qrCodes = [
   {
     image: qrCodeImage,
     text: "Hospital QR Code",
-    description: "Scan this QR code to access hospital services and information instantly.",
-  }
+    description:
+      "Scan this QR code to access hospital services and information instantly.",
+  },
 ];
-

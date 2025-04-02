@@ -1,17 +1,22 @@
-import React from 'react';
+
+import React, { useState, useEffect } from "react";
 import styled from 'styled-components';
 import { useNavigate } from "react-router-dom";
 
 
 const Card = () => {
     const navigate = useNavigate();
+    const [userName, setUserName] = useState(() => {
+      const storedUser = localStorage.getItem("user");
+      return storedUser ? JSON.parse(storedUser).fullname : null;
+    });
 
   return (
     <StyledWrapper>
       <div className="card">
         <ul className="list">
         <li className="item"
-         onClick={() => navigate("/user-dashboard")}
+         onClick={() => navigate(`/user-dashboard/${userName}`)}
          >
             <span className="label">Profile</span>
             <svg xmlns="http://www.w3.org/2000/svg" width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chart-spline">

@@ -77,7 +77,7 @@ export default function QrCodeGenerator() {
           .slice()
           .reverse()
           .map((qr, index) => (
-            <div key={index} className="p-2 rounded flex flex-col items-center w-auto max-w-xs">
+            <div key={index} className="bg-white  p-2 rounded flex flex-col items-center w-auto max-w-xs">
               {/* QR Code Canvas */}
               <QRCodeCanvas
                 value={qr.qrText}

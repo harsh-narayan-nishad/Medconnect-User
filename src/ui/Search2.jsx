@@ -11,6 +11,7 @@ const Input = () => {
   useEffect(() => {
     const storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
     setSearchHistory(storedHistory);
+   
   }, []);
 
   const handleSearch = () => {
@@ -26,7 +27,8 @@ const Input = () => {
     localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
 
     setShowHistory(false); // Hide history after searching
-    navigate('/doctor-search');
+    // navigate('/doctor-search');
+    
   };
 
   const handleKeyDown = (event) => {

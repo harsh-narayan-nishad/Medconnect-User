@@ -1,4 +1,3 @@
-
 import { resourcesLinks, platformLinks, communityLinks } from "../constants";
 import Search from "../ui/Search3";
 import { useNavigate } from "react-router-dom";
@@ -14,11 +13,17 @@ const Footer = () => {
             Home
           </button>
           <span> &gt; </span>
-          <button onClick={() => navigate("/page2")} className="hover:underline">
+          <button
+            onClick={() => navigate("/page2")}
+            className="hover:underline"
+          >
             Appointment
           </button>
           <span> &gt; </span>
-          <button onClick={() => navigate("/page3")} className="hover:underline">
+          <button
+            onClick={() => navigate("/page3")}
+            className="hover:underline"
+          >
             Research
           </button>
         </div>
@@ -26,12 +31,17 @@ const Footer = () => {
 
       <footer className="border-t py-12 border-gray-300 ">
         <div className="text-gray-400 text-sm  mx-auto ">
-          Healthcare today faces significant challenges due to fragmented patient data, where medical history is scattered across platforms, making it difficult for providers to retrieve comprehensive information.
+          Healthcare today faces significant challenges due to fragmented
+          patient data, where medical history is scattered across platforms,
+          making it difficult for providers to retrieve comprehensive
+          information.
         </div>
 
         <div className="flex justify-center items-center py-12">
           <div className="text-center">
-            <h1 className="text-4xl mb-5 font-bold text-gray-700">Your Health, Our Priority...</h1>
+            <h1 className="text-4xl mb-5 font-bold text-gray-700">
+              Your Health, Our Priority...
+            </h1>
             <Search />
           </div>
         </div>
@@ -42,7 +52,10 @@ const Footer = () => {
             <ul className="space-y-2">
               {resourcesLinks.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="text-gray-400 text-sm hover:text-gray-900">
+                  <a
+                    href={link.href}
+                    className="text-gray-400 text-sm hover:text-gray-900"
+                  >
                     {link.text}
                   </a>
                 </li>
@@ -54,7 +67,10 @@ const Footer = () => {
             <ul className="space-y-2">
               {platformLinks.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="text-gray-400 text-sm hover:text-gray-900">
+                  <a
+                    href={link.href}
+                    className="text-gray-400 text-sm hover:text-gray-900"
+                  >
                     {link.text}
                   </a>
                 </li>
@@ -66,7 +82,10 @@ const Footer = () => {
             <ul className="space-y-2">
               {communityLinks.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="text-gray-400 text-sm hover:text-gray-900">
+                  <a
+                    href={link.href}
+                    className="text-gray-400 text-sm hover:text-gray-900"
+                  >
                     {link.text}
                   </a>
                 </li>
@@ -77,7 +96,11 @@ const Footer = () => {
       </footer>
 
       <div className="mt-1 border-t border-gray-300"></div>
-      <p className="text-gray-400 text-sm  py-4">India<br />Copyright © 2024 Medconnect. All rights reserved.</p>
+      <p className="text-gray-400 text-sm  py-4">
+        India
+        <br />
+        Copyright © 2024 Mediconnect. All rights reserved.
+      </p>
     </>
   );
 };

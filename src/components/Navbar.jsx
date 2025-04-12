@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
@@ -22,15 +20,20 @@ const Navbar = () => {
     <nav className="sticky top-0 z-50 py-3 backdrop-blur-sm border-b border-[#f4f4f4]">
       <div className="container px-4 mx-auto relative lg:text-sm">
         <div className="flex justify-between items-center">
-          <div className="cursor-pointer flex items-center flex-shrink-0" 
-          onClick={() => navigate("/")}> 
+          <div
+            className="cursor-pointer flex items-center flex-shrink-0"
+            onClick={() => navigate("/")}
+          >
             <img className="h-10 w-10 mr-2" src={logo} alt="Logo" />
-            <span className="text-xl tracking-tight">Medconnect</span>
+            <span className="text-xl tracking-tight">Mediconnect</span>
           </div>
-          
+
           <div className="hidden lg:flex justify-center space-x-12 items-center">
             <div className="hidden lg:flex justify-center space-x-4 items-center">
-              <ul className="cursor-pointer" onClick={() => navigate(`/user-dashboard/${userName}`)}>
+              <ul
+                className="cursor-pointer"
+                onClick={() => navigate(`/user-dashboard/${userName}`)}
+              >
                 {userName ? userName : "Research"}
               </ul>
               {!userName ? (
@@ -45,7 +48,6 @@ const Navbar = () => {
                   onClick={() => {
                     localStorage.removeItem("user");
                     setUserName(null);
-
                   }}
                   className="bg-red-500 text-white py-2 px-3 rounded-md"
                 >
@@ -75,7 +77,7 @@ const Navbar = () => {
             <div className="flex space-x-6">
               {!userName ? (
                 <>
-                  <button 
+                  <button
                     onClick={() => navigate("/login")}
                     className="py-2 px-3 border rounded-md"
                   >

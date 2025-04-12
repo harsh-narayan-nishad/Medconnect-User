@@ -48,6 +48,7 @@ const StateSelector = () => {
 
   useEffect(() => {
     localStorage.setItem(userStateKey, selectedState);
+    console.log("Selected State:", selectedState);
   }, [selectedState, userStateKey]);
 
   return (

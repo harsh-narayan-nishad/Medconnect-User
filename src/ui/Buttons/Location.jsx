@@ -35,7 +35,7 @@ const StyledWrapper = styled.div`
     background-color: rgba(255, 255, 255, 0.2);
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); 
     margin-top: 15px;
   }
   .loader-shape-3:before {
@@ -43,11 +43,11 @@ const StyledWrapper = styled.div`
     height: 20px;
     border-radius: 100% 100% 100% 0;
     box-shadow: 0px 0px 0px 2px rgba(255, 255, 255, 1);
-    animation: anm-SL-3-move 1s linear infinite;
+    // animation: anm-SL-3-move 1s linear infinite;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-46deg);
-    margin-top: 20px;
+    // margin-top: 20px;
   }
   .loader-shape-3:before,
   .loader-shape-3:after {

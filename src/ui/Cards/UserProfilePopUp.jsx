@@ -5,19 +5,19 @@ import { useNavigate } from "react-router-dom";
 
 
 const Card = () => {
-    const navigate = useNavigate();
-    const [userName, setUserName] = useState(() => {
-      const storedUser = localStorage.getItem("user");
-      return storedUser ? JSON.parse(storedUser).fullname : null;
-    });
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser ? JSON.parse(storedUser).fullname : null;
+  });
 
   return (
     <StyledWrapper>
       <div className="card">
         <ul className="list">
-        <li className="item"
-         onClick={() => navigate(`/user-dashboard/${userName}`)}
-         >
+          <li className="item"
+            onClick={() => navigate(`/user-dashboard/${userName}`)}
+          >
             <span className="label">Profile</span>
             <svg xmlns="http://www.w3.org/2000/svg" width={22} height={22} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chart-spline">
               <path d="M3 3v16a2 2 0 0 0 2 2h16" />
@@ -72,7 +72,7 @@ const Card = () => {
               <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
             </svg>
           </li>
-         
+
           <li className="item">
             <span className="label">Transfer Project</span>
             <svg className="lucide lucide-arrow-down-up" strokeLinejoin="round" strokeLinecap="round" strokeWidth="1.5" stroke="currentColor" fill="none" viewBox="0 0 24 24" height={22} width={22} xmlns="http://www.w3.org/2000/svg">

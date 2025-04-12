@@ -11,7 +11,7 @@ const Input = () => {
   useEffect(() => {
     const storedHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
     setSearchHistory(storedHistory);
-   
+
   }, []);
 
   const handleSearch = () => {
@@ -28,7 +28,7 @@ const Input = () => {
 
     setShowHistory(false); // Hide history after searching
     // navigate('/doctor-search');
-    
+
   };
 
   const handleKeyDown = (event) => {
@@ -92,27 +92,27 @@ const Input = () => {
       {/* Show history suggestions only while typing */}
       {showHistory && searchHistory.length > 0 && (
         <div className="absolute mt-4 top-12 left-0 w-56 bg-white shadow-lg rounded-xl border border-gray-300">
-         <ul className="py-2">
-  {searchHistory.slice(0, 5).map((term, index) => (
-    <li
-      key={index}
-      className="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer"
-    >
-      <span
-        onClick={() => handleHistoryClick(term)}
-        className="w-full text-left"
-      >
-        {term}
-      </span>
-      <button
-        onClick={() => deleteHistoryItem(term)}
-        className="text-red-500 hover:text-red-700"
-      >
-        ✕
-      </button>
-    </li>
-  ))}
-</ul>
+          <ul className="py-2">
+            {searchHistory.slice(0, 5).map((term, index) => (
+              <li
+                key={index}
+                className="px-4 py-2 flex items-center hover:bg-gray-100 cursor-pointer"
+              >
+                <span
+                  onClick={() => handleHistoryClick(term)}
+                  className="w-full text-left"
+                >
+                  {term}
+                </span>
+                <button
+                  onClick={() => deleteHistoryItem(term)}
+                  className="text-red-500 hover:text-red-700"
+                >
+                  ✕
+                </button>
+              </li>
+            ))}
+          </ul>
 
           <button
             onClick={clearHistory}

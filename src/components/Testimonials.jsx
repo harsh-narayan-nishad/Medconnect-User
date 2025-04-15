@@ -16,7 +16,7 @@ const Testimonials = () => {
                   className="w-12 h-12 mr-6 rounded-full border border-neutral-300"
                   src={testimonial.image}
                   alt=""
-                />
+                /> 
                 <div>
                   <h6>{testimonial.user}</h6>
                   <span className="text-sm font-normal italic text-neutral-600">

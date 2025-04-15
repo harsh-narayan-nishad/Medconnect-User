@@ -89,7 +89,7 @@ const DoctorProfileCardClean = ({ doctor }) => {
                     </div>
                     <div className="ml-4">
                         <h3 className="text-lg font-semibold text-gray-900">
-                            Dr. {doctor?.fullname}
+                            {doctor?.fullname}
                         </h3>
                         <p className="text-sm text-gray-500">
                             {doctor?.specialization}{" "}

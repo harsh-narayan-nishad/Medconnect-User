@@ -53,12 +53,7 @@ const DoctorProfileCardClean = ({ doctor }) => {
                 </div>
 
                 <div className="mt-4 grid grid-cols-3 gap-4">
-                    {/* <div className="text-center">
-            <div className="text-lg font-semibold text-emerald-600">
-              {doctor?.followers || "0"}
-            </div>
-            <div className="text-sm text-gray-500">Followers</div>
-          </div> */}
+                 
                     <div className="text-center">
                         <div className="text-lg font-semibold text-emerald-600">
                             {doctor?.stories?.length

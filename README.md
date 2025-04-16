@@ -32,42 +32,40 @@
 ├── main.jsx               # Entry Point
 └── index.css              # Global CSS -->
 
-
-src/
-│
-├── assets/                # 🖼️  Images, icons, logos
-│
-├── components/            # 🧩 Reusable UI components (Buttons, Inputs, Dropdowns)
-│   ├── common/            # 🔁 Generic components used everywhere
-│   ├── LoginSignup/       # 🔐 Only Login/Signup specific UI
-│   └── Layout/            # 🧱 Navbar, Footer, Sidebar etc
-│
-├── pages/                 # 📄 Route-level components (Mapped to routes)
-│   ├── Home.jsx
-│   ├── DoctorSearch.jsx
-│   ├── AppointmentSchedule.jsx
-│   ├── UserDashboard.jsx
-│   └── ...
-│
-├── context/               # 🌐 Context API Files (Global State)
-│   ├── AuthContext.jsx
-│   └── StateContext.jsx
-│
-├── constants/             # 🧾 Static data, configs, enums
-│
-├── services/              # 📡 API calling functions (axios/fetch)
-│   └── userService.js
-│
-├── hooks/                 # 🪝 Custom React hooks
-│   └── useAuth.js
-│
-├── utils/                 # 🧠 Helper functions, formatters, validators
-│
-├── App.jsx                # 🏠 Root component
-├── main.jsx               # 🚪 App entry point
-└── index.css              # 🎨 Global styles
-
-
+## Structure of project
+src/<br>
+│<br>
+├── assets/                # Images, icons, logos<br>
+│<br>
+├── components/            # Reusable UI components<br>
+│   ├── common/            # Generic components used everywhere<br>
+│   ├── LoginSignup/       # Only Login/Signup specific UI<br>
+│   └── Layout/            # Navbar, Footer, Sidebar etc<br>
+│<br>
+├── pages/                 # Route level components<br>
+│   ├── Home.jsx<br>
+│   ├── DoctorSearch.jsx<br>
+│   ├── AppointmentSchedule.jsx<br>
+│   ├── UserDashboard.jsx<br>
+│   └── ...<br>
+│<br>
+├── context/               # Context API Files (Global State)<br>
+│   ├── AuthContext.jsx<br>
+│   └── StateContext.jsx<br>
+│<br>
+├── constants/             # Static Data, Configs, Enums<br>
+│<br>
+├── services/              # API Calling functions (axios fetch calls)<br>
+│   └── userService.js<br>
+│<br>
+├── hooks/                 # Custom Hooks<br>
+│   └── useAuth.js<br>
+│<br>
+├── utils/                 # Helper functions, Formatters, Validators<br>
+│<br>
+├── App.jsx                # Root Component<br>
+├── main.jsx               # Entry Point<br>
+└── index.css              # Global CSS
 
 <h1 align="center"> Medconnect Documentation</h1> <br>
 

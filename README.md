@@ -1,4 +1,4 @@
-src/
+<!-- src/
 │
 ├── assets/                # Images, icons, logos
 │
@@ -30,7 +30,42 @@ src/
 │
 ├── App.jsx                # Root Component
 ├── main.jsx               # Entry Point
-└── index.css              # Global CSS
+└── index.css              # Global CSS -->
+
+
+src/
+│
+├── assets/                # 🖼️  Images, icons, logos
+│
+├── components/            # 🧩 Reusable UI components (Buttons, Inputs, Dropdowns)
+│   ├── common/            # 🔁 Generic components used everywhere
+│   ├── LoginSignup/       # 🔐 Only Login/Signup specific UI
+│   └── Layout/            # 🧱 Navbar, Footer, Sidebar etc
+│
+├── pages/                 # 📄 Route-level components (Mapped to routes)
+│   ├── Home.jsx
+│   ├── DoctorSearch.jsx
+│   ├── AppointmentSchedule.jsx
+│   ├── UserDashboard.jsx
+│   └── ...
+│
+├── context/               # 🌐 Context API Files (Global State)
+│   ├── AuthContext.jsx
+│   └── StateContext.jsx
+│
+├── constants/             # 🧾 Static data, configs, enums
+│
+├── services/              # 📡 API calling functions (axios/fetch)
+│   └── userService.js
+│
+├── hooks/                 # 🪝 Custom React hooks
+│   └── useAuth.js
+│
+├── utils/                 # 🧠 Helper functions, formatters, validators
+│
+├── App.jsx                # 🏠 Root component
+├── main.jsx               # 🚪 App entry point
+└── index.css              # 🎨 Global styles
 
 
 

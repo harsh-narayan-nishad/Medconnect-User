@@ -1,81 +1,218 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom";
+import { Calendar } from "@/components/ui/calendar"
+import { Card, CardContent } from "@/components/ui/card"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Badge } from "@/components/ui/badge"
+import { CalendarDays, Clock, MapPin, Star } from "lucide-react"
+import Navbar from "../Navbar"
+import dayjs from "dayjs"
+import relativeTime from "dayjs/plugin/relativeTime"
+dayjs.extend(relativeTime)
 
-const DoctorProfile = () => {
-  const { id } = useParams();
-  const [doctor, setDoctor] = useState(null);
-  const [loading, setLoading] = useState(true);
+export default function DoctorProfile() {
+  const { id: doctorId } = useParams()
+  const [doctor, setDoctor] = useState(null)
+  const [stories, setStories] = useState([])
+  const [slots, setSlots] = useState([])
+  const [selectedDate, setSelectedDate] = useState(null)
 
   useEffect(() => {
     const fetchDoctor = async () => {
       try {
-        console.log("Doctor ID from URL:", id);
-
-        const response = await fetch(`https://backend-453n.onrender.com/api/doctors/doctors/${id}`);
-        const data = await response.json();
-
-        if (data && typeof data === 'object') {
-          setDoctor(data);
-        } else {
-          console.error('Invalid doctor data:', data);
-        }
-      } catch (error) {
-        console.error('Error fetching doctor:', error);
-      } finally {
-        setLoading(false);
+        const res = await fetch(`https://backend-453n.onrender.com/api/doctors/doctors/${doctorId}`)
+        const data = await res.json()
+        setDoctor(data)
+      } catch (err) {
+        console.error("Error fetching doctor:", err)
       }
-    };
+    }
 
-    fetchDoctor();
-  }, [id]);
+    const fetchStories = async () => {
+      try {
+        const res = await fetch(`https://backend-453n.onrender.com/api/stories/doctor/${doctorId}`)
+        const data = await res.json()
+        setStories(data)
+      } catch (err) {
+        console.error("Error fetching stories:", err)
+      }
+    }
 
-  if (loading) return <div className="p-4">Loading...</div>;
-  if (!doctor) return <div className="p-4 text-red-500">Doctor not found.</div>;
+    fetchDoctor()
+    fetchStories()
+  }, [doctorId])
 
-  const availability = Array.isArray(doctor.availability) ? doctor.availability : [];
+  useEffect(() => {
+    if (selectedDate) {
+      const fetchSlots = async () => {
+        try {
+          // const formattedDate = selectedDate.toISOString().split("T")[0]
+          const formattedDate = dayjs(selectedDate).format("YYYY-MM-DD");
+
+          const res = await fetch(`https://backend-453n.onrender.com/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`)
+          const data = await res.json()
+          setSlots(data.slots || [])
+        } catch (err) {
+          console.error("Error fetching slots:", err)
+        }
+      }
+
+      fetchSlots()
+    }
+  }, [selectedDate, doctorId])
+
+  if (!doctor) return <div className="p-10 text-center text-lg">Loading doctor profile...</div>
 
   return (
-      <div className="min-h-screen bg-gray-100 p-6">
-      <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
-        {/* Doctor Info */}
-        <h1 className="text-3xl font-bold mb-2">{doctor.fullname}</h1>
-        <h1 className="text-3xl font-bold text-gray-800 mb-2 capitalize">{doctor.name}</h1>
-        <h2 className="text-xl text-gray-600 mb-2">{doctor.specialization}</h2>
-        <h2 className="text-xl text-gray-600 mb-2">{doctor.subspecialization}</h2>
-        <p className="text-gray-700 mb-6">{doctor.description}</p>
+    <>
+      <Navbar />
+      <div className="container mx-auto py-8 px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Doctor Info */}
+          <Card className="md:col-span-1">
+            <CardContent className="pt-6">
+              <div className="flex flex-col items-center mb-6">
+                <Avatar className="h-32 w-32 mb-4">
+                  <AvatarImage src={doctor.image || "/placeholder.svg"} alt={doctor.fullname} />
+                  <AvatarFallback>{doctor.fullname?.slice(0, 2)}</AvatarFallback>
+                </Avatar>
+                <h1 className="text-2xl font-bold">{doctor.fullname}</h1>
+                <p className="text-muted-foreground">{doctor.specialization}</p>
+                <div className="flex items-center mt-2">
+                  {Array(5).fill(0).map((_, i) => (
+                    <Star key={i} className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                  ))}
+                  <span className="ml-2 text-sm text-muted-foreground">({doctor.stories.length || 0} reviews)</span>
+                </div>
+              </div>
 
-        {/* Availability Section */}
-        <h3 className="text-2xl font-semibold text-gray-800 mb-3">Weekly Availability</h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border border-gray-200 rounded-lg">
-            <thead className="bg-gray-100 text-gray-700">
-              <tr>
-                <th className="py-2 px-4 border-b">Day</th>
-                <th className="py-2 px-4 border-b">Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              {doctor.availability?.map((slot, index) => (
-                <tr key={index} className="hover:bg-gray-50">
-                  <td className="py-2 px-4 border-b font-medium">{slot.day}</td>
-                  <td className="py-2 px-4 border-b">
-                    {slot.startTime} - {slot.endTime}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              <div className="space-y-4">
+                <div className="flex items-center gap-2">
+                  <Badge variant="outline" className="px-3 py-1">
+                    Age: {doctor.age}
+                  </Badge>
+                  <Badge variant="outline" className="px-3 py-1">
+                    {doctor.experience}+ Years Experience
+                  </Badge>
+                </div>
 
-        {/* CTA Button */}
-        <div className="mt-8">
-          <button className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition-all">
-            Book Appointment
-          </button>
+                <div className="flex items-center gap-2 text-sm">
+                  <MapPin className="h-4 w-4 text-muted-foreground" />
+                  <span>{doctor.location}</span>
+                </div>
+
+                <div className="flex items-center gap-2 text-sm">
+                  <Clock className="h-4 w-4 text-muted-foreground" />
+                  <span>Mon-Sun: Dynamic Slots</span>
+                </div>
+
+                <div className="mt-4">
+                  <h3 className="font-medium mb-2">About</h3>
+                  <p className="text-sm text-muted-foreground">{doctor.description}</p>
+                </div>
+
+                <div className="mt-4">
+                  <h3 className="font-medium mb-2">Specializations</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {doctor.specialization && <Badge>{doctor.specialization}</Badge>}
+                    {doctor.subspecialization?.map((item) => (
+                      <Badge key={item}>{item}</Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Tabs Section */}
+          <div className="md:col-span-2">
+            <Tabs defaultValue="appointments" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="appointments">Appointments</TabsTrigger>
+                <TabsTrigger value="stories">Patient Stories</TabsTrigger>
+              </TabsList>
+
+              {/* Appointments Tab */}
+              <TabsContent value="appointments" className="mt-4">
+                <Card>
+                  <CardContent className="pt-6">
+                    <div className="flex items-center mb-4">
+                      <CalendarDays className="mr-2 h-5 w-5" />
+                      <h2 className="text-xl font-semibold">Schedule an Appointment</h2>
+                    </div>
+
+                    <p className="text-sm text-muted-foreground mb-4">
+                      Select a date to view available appointment slots.
+                    </p>
+                    <Calendar mode="single" selected={selectedDate} onSelect={setSelectedDate} className="rounded-md border" />
+
+                    {selectedDate && (
+                      <div className="mt-6">
+                        <h3 className="font-medium mb-3">Available Time Slots</h3>
+                        <div className="grid grid-cols-3 gap-2">
+                          {slots.map(({ startTime, status }) => (
+                            <button
+                              key={startTime}
+                              disabled={status === "booked"}
+                              className={`py-2 px-4 text-sm border rounded-md transition-colors ${
+                                status === "booked" ? "bg-gray-200 text-gray-500 cursor-not-allowed" : "hover:bg-muted"
+                              }`}
+                            >
+                              {startTime}
+                            </button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              </TabsContent>
+
+              {/* Patient Stories Tab */}
+              <TabsContent value="stories" className="mt-4">
+                <Card>
+                  <CardContent className="pt-6">
+                    <h2 className="text-xl font-semibold mb-4">Patient Stories</h2>
+                    <div className="space-y-6">
+                      {stories.length === 0 && (
+                        <p className="text-sm text-muted-foreground">No stories shared yet.</p>
+                      )}
+
+                      {stories.map((story) => (
+                        <div key={story._id} className="border rounded-lg p-4">
+                          <div className="flex items-center mb-3">
+                            <Avatar className="h-10 w-10 mr-3">
+                              <AvatarFallback>{story.user?.fullname?.[0]}</AvatarFallback>
+                            </Avatar>
+                            <div>
+                              <h4 className="font-medium">{story.user?.fullname}</h4>
+                              <div className="flex items-center">
+                                {Array(5).fill(0).map((_, j) => (
+                                  <Star
+                                    key={j}
+                                    className={`h-3 w-3 ${
+                                      story.recommended && j < 5 ? "text-yellow-500 fill-yellow-500" : "text-gray-300"
+                                    }`}
+                                  />
+                                ))}
+                                <span className="ml-2 text-xs text-muted-foreground">
+                                  {dayjs(story.submittedAt).fromNow()}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <p className="text-sm text-muted-foreground">{story.story}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
-
-export default DoctorProfile;
+    </>
+  )
+}

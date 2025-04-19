@@ -32,40 +32,7 @@
 ├── main.jsx               # Entry Point
 └── index.css              # Global CSS -->
 
-## Structure of project
-src/<br>
-│<br>
-├── assets/                # Images, icons, logos<br>
-│<br>
-├── components/            # Reusable UI components<br>
-│   ├── common/            # Generic components used everywhere<br>
-│   ├── LoginSignup/       # Only Login/Signup specific UI<br>
-│   └── Layout/            # Navbar, Footer, Sidebar etc<br>
-│<br>
-├── pages/                 # Route level components<br>
-│   ├── Home.jsx<br>
-│   ├── DoctorSearch.jsx<br>
-│   ├── AppointmentSchedule.jsx<br>
-│   ├── UserDashboard.jsx<br>
-│   └── ...<br>
-│<br>
-├── context/               # Context API Files (Global State)<br>
-│   ├── AuthContext.jsx<br>
-│   └── StateContext.jsx<br>
-│<br>
-├── constants/             # Static Data, Configs, Enums<br>
-│<br>
-├── services/              # API Calling functions (axios fetch calls)<br>
-│   └── userService.js<br>
-│<br>
-├── hooks/                 # Custom Hooks<br>
-│   └── useAuth.js<br>
-│<br>
-├── utils/                 # Helper functions, Formatters, Validators<br>
-│<br>
-├── App.jsx                # Root Component<br>
-├── main.jsx               # Entry Point<br>
-└── index.css              # Global CSS
+
 
 <h1 align="center"> Medconnect Documentation</h1> <br>
 
@@ -93,16 +60,15 @@ Book appointments, consult doctors, and manage your health effortlessly — futu
 
 ## Upcomming features
 
+* Search engine using machine learning.
+* QR Code Scanner for individual Profiles.* Video, audio or live chat.
 * Optimized backend with help of rate limitizer and kafka etc.
 * Last seen profile feature.
 * Location fetching to recommend nearest doctors.
 * Notify me, when a specific doctor is available.
-* Search engine using machine learning.
-* QR Code Scanner for individual Profiles.
-* Video, audio or live chat.
 * Feedback enabling.
 * Comment feature as feedback.
-
+<!-- 
 
 ## Features
 
@@ -117,8 +83,8 @@ Upcomming Features:
 - Support for video, audio, or live chat consultations
 - A feedback system so you can share your experience after each appointment
 - Commenting on feedback to add more context or start a conversation
-
-
+ -->
+<!-- 
 <p align="center">
   <img src = "http://i.imgur.com/IkSnFRL.png" width=700>
 </p>
@@ -169,8 +135,6 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 <a href="https://opencollective.com/git-point/sponsor/6/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/6/avatar.svg"></a>
 <a href="https://opencollective.com/git-point/sponsor/7/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/7/avatar.svg"></a>
 <a href="https://opencollective.com/git-point/sponsor/8/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/git-point/sponsor/9/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/9/avatar.svg"></a>
+<a href="https://opencollective.com/git-point/sponsor/9/website" target="_blank"><img src="https://opencollective.com/git-point/sponsor/9/avatar.svg"></a> -->
 
-## Acknowledgments
 
-Thanks to [JetBrains](https://www.jetbrains.com) for supporting us with a [free Open Source License](https://www.jetbrains.com/buy/opensource).

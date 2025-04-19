@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Calendar } from "@/components/ui/calendar"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Badge } from "@/components/ui/badge"
-import { CalendarDays, Clock, MapPin, Star } from "lucide-react"
-import Navbar from "../Navbar"
-import dayjs from "dayjs"
-import relativeTime from "dayjs/plugin/relativeTime"
+import { Calendar } from "@/components/ui/calendar";
+import { Card, CardContent } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { CalendarDays, Clock, MapPin, Star } from "lucide-react";
+import Navbar from "../Navbar";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime)
 
 export default function DoctorProfile() {

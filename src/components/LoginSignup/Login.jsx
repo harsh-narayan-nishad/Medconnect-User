@@ -58,7 +58,7 @@ const Login = () => {
             placeholder="Email" 
             onChange={handleChange} 
             required 
-          />
+          /> 
           <div className="relative">
             <input
               className="w-full p-3 bg-white border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"

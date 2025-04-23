@@ -345,9 +345,14 @@ import { CalendarDays, Clock, MapPin, Star, Loader2 } from "lucide-react";
 import Navbar from "../Navbar";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+<<<<<<< Updated upstream
 import { DialogDescription } from "@radix-ui/react-dialog";
 
 dayjs.extend(relativeTime);
+=======
+import Loader from "../../ui/Loader";
+dayjs.extend(relativeTime)
+>>>>>>> Stashed changes
 
 export default function DoctorProfile() {
   const { id: doctorId } = useParams();
@@ -403,6 +408,7 @@ export default function DoctorProfile() {
     }
   }, [selectedDate, doctorId]);
 
+<<<<<<< Updated upstream
   const handleConfirmAppointment = async () => {
     setLoading(true);
     try {
@@ -451,6 +457,9 @@ export default function DoctorProfile() {
   if (!doctor) {
     return <div className="p-10 text-center text-lg">Loading doctor profile...</div>;
   }
+=======
+  if(!doctor) return <Loader />
+>>>>>>> Stashed changes
 
   return (
     <>

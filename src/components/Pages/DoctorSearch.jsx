@@ -2,10 +2,7 @@
 // import Footer from "../Footer";
 // import DocterCard from "../../ui/Cards/DoctorsList"
 
-
-
 // const DoctorSearch = () => {
-
 
 //   return (
 //     <div className="bg-[#f4f4f4 px-5">
@@ -194,7 +191,12 @@ const DoctorSearch = () => {
             ))}
           </div>
           {!loading && !hasMore && (
-            <p className="text-center text-gray-400 mt-4">You've reached the end 🎉</p>
+            // <p className="text-center text-gray-400 mt-4">You've reached the end 🎉</p>
+            <div className="text-center text-gray-500 py-4 flex flex-col items-center">
+            <hr className="w-[97vw] border-gray-300 mb-2" />
+            <p className="text-sm">No more results to show</p>
+          </div>
+        
           )}
         </div>
       </div>

@@ -14,6 +14,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import Loader from "../../ui/Loader"
+import { authFetch } from "@/utils/authFetch";
 dayjs.extend(relativeTime);
 
 export default function DoctorProfile() {
@@ -75,25 +76,120 @@ export default function DoctorProfile() {
     }
   }, [selectedDate, doctorId]);
 
+  // const handleConfirmAppointment = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     const res = await fetch("https://backend-453n.onrender.com/api/appointments/request", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({
+  //         doctorId,
+  //         date: dayjs(selectedDate).format("YYYY-MM-DD"),
+  //         startTime: selectedSlot,
+  //       }),
+  //     });
+
+  //     const data = await res.json();
+
+  //     if (res.ok) {
+  //       toast({
+  //         title: "Appointment Requested",
+  //         description: `Your request has been sent for ${selectedSlot}`,
+  //       });
+  //       setSelectedSlot(null);
+  //     } else {
+  //       toast({
+  //         title: "Failed to Send Request",
+  //         description: data.message || "Something went wrong.",
+  //         variant: "destructive",
+  //       });
+  //     }
+  //   } catch (err) {
+  //     console.error("Error:", err);
+  //     toast({
+  //       title: "Error",
+  //       description: "Something went wrong.",
+  //       variant: "destructive",
+  //     });
+  //   } finally {
+  //     setLoading(false);
+  //     setShowDialog(false);
+  //   }
+  // };
+
+  // const handleSubmitStory = async () => {
+  //   if (!visitedFor || recommend === null || !storyText) {
+  //     return toast({
+  //       title: "Missing Fields",
+  //       description: "Please fill out all fields before submitting.",
+  //       variant: "destructive",
+  //     });
+  //   }
+  
+  //   setSubmitting(true);
+  //   try {
+  //     const token = localStorage.getItem("token");
+  //     const res = await fetch("https://backend-453n.onrender.com/api/stories/add", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({
+  //         doctorId,
+  //         visitedFor,
+  //         recommend,
+  //         story: storyText,
+  //       }),
+  //     });
+  
+  //     const data = await res.json();
+  
+  //     if (res.ok) {
+  //       toast({
+  //         title: "Story Submitted",
+  //         description: "Thanks for sharing your experience!",
+  //       });
+  //       setVisitedFor("");
+  //       setRecommend(null);
+  //       setStoryText("");
+  //       setStories((prev) => [data.story, ...prev]); // optimistically update UI
+  //     } else {
+  //       toast({
+  //         title: "Failed to submit story",
+  //         description: data.message || "Please try again.",
+  //         variant: "destructive",
+  //       });
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //     toast({
+  //       title: "Error",
+  //       description: "Something went wrong. Please try again.",
+  //       variant: "destructive",
+  //     });
+  //   } finally {
+  //     setSubmitting(false);
+  //   }
+  // };
   const handleConfirmAppointment = async () => {
     setLoading(true);
     try {
-      const token = localStorage.getItem("token");
-      const res = await fetch("https://backend-453n.onrender.com/api/appointments/request", {
+      const res = await authFetch("/api/appointments/request", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
         body: JSON.stringify({
           doctorId,
           date: dayjs(selectedDate).format("YYYY-MM-DD"),
           startTime: selectedSlot,
         }),
       });
-
+  
       const data = await res.json();
-
+  
       if (res.ok) {
         toast({
           title: "Appointment Requested",
@@ -120,62 +216,57 @@ export default function DoctorProfile() {
     }
   };
 
-  const handleSubmitStory = async () => {
-    if (!visitedFor || recommend === null || !storyText) {
-      return toast({
-        title: "Missing Fields",
-        description: "Please fill out all fields before submitting.",
-        variant: "destructive",
-      });
-    }
-  
-    setSubmitting(true);
-    try {
-      const token = localStorage.getItem("token");
-      const res = await fetch("https://backend-453n.onrender.com/api/stories/add", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          doctorId,
-          visitedFor,
-          recommend,
-          story: storyText,
-        }),
-      });
-  
-      const data = await res.json();
-  
-      if (res.ok) {
-        toast({
-          title: "Story Submitted",
-          description: "Thanks for sharing your experience!",
-        });
-        setVisitedFor("");
-        setRecommend(null);
-        setStoryText("");
-        setStories((prev) => [data.story, ...prev]); // optimistically update UI
-      } else {
-        toast({
-          title: "Failed to submit story",
-          description: data.message || "Please try again.",
-          variant: "destructive",
-        });
-      }
-    } catch (err) {
-      console.error(err);
+const handleSubmitStory = async () => {
+  if (!visitedFor || recommend === null || !storyText) {
+    return toast({
+      title: "Missing Fields",
+      description: "Please fill out all fields before submitting.",
+      variant: "destructive",
+    });
+  }
+
+  setSubmitting(true);
+  try {
+    const res = await authFetch("/api/stories/add", {
+      method: "POST",
+      body: JSON.stringify({
+        doctorId,
+        visitedFor,
+        recommend,
+        story: storyText,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
       toast({
-        title: "Error",
-        description: "Something went wrong. Please try again.",
+        title: "Story Submitted",
+        description: "Thanks for sharing your experience!",
+      });
+      setVisitedFor("");
+      setRecommend(null);
+      setStoryText("");
+      setStories((prev) => [data.story, ...prev]);
+    } else {
+      toast({
+        title: "Failed to submit story",
+        description: data.message || "Please try again.",
         variant: "destructive",
       });
-    } finally {
-      setSubmitting(false);
     }
-  };
-  
+  } catch (err) {
+    console.error(err);
+    toast({
+      title: "Error",
+      description: "Something went wrong. Please try again.",
+      variant: "destructive",
+    });
+  } finally {
+    setSubmitting(false);
+  }
+};
+
 
   if (!doctor) {
     // return <div className="p-10 text-center text-lg">Loading doctor profile...</div>;

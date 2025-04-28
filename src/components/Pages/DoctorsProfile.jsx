@@ -471,9 +471,23 @@ const handleSubmitStory = async () => {
                       </div>
                       <div className="grid gap-2">
                         <label className="text-sm font-medium">Do You Recommend This Doctor?</label>
-                        <select
+                        {/* <select
                           value={recommend}
                           onChange={(e) => setRecommend(e.target.value === "yes")}
+                          className="border rounded px-3 py-2 text-sm"
+                        >
+                          <option value="">Select</option>
+                          <option value="yes">Yes</option>
+                          <option value="no">No</option>
+                        </select> */}
+                        <select
+                          value={recommend === null ? "" : recommend ? "yes" : "no"}
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            if (value === "") setRecommend(null);
+                            else if (value === "yes") setRecommend(true);
+                            else if (value === "no") setRecommend(false);
+                          }}
                           className="border rounded px-3 py-2 text-sm"
                         >
                           <option value="">Select</option>

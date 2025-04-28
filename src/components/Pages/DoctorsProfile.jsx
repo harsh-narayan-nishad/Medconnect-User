@@ -15,7 +15,6 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import { DialogDescription } from "@radix-ui/react-dialog";
 
 import { authFetch } from "@/utils/authFetch";
-dayjs.extend(relativeTime);
 import Loader from "../../ui/Loader";
 dayjs.extend(relativeTime)
 

@@ -10,7 +10,7 @@ import DoctorProfile from "./components/Pages/DoctorsProfile"
 
 const AppRoutes = () => {
   return (
-    <Router>
+    <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -22,7 +22,7 @@ const AppRoutes = () => {
         <Route path="/doctors-page/:id" element={<DoctorProfile />} />
  
       </Routes>
-    </Router>
+    </>
   );
 };
 // 

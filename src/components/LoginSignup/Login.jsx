@@ -22,11 +22,13 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        "https://med-connect-backend.onrender.com/api/auth/login",
+        "https://backend-453n.onrender.com/api/auth/login",
+        // "http://localhost:5000/api/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
+          credentials: "include", // Important for cookies
         }
       );
 

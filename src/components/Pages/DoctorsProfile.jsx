@@ -234,7 +234,7 @@ const handleSubmitStory = async () => {
       body: JSON.stringify({
         doctorId,
         visitedFor,
-        recommend,
+        recommended: recommend,
         story: storyText,
       }),
     });

@@ -13,7 +13,7 @@ import Navbar from "../Navbar";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { DialogDescription } from "@radix-ui/react-dialog";
-import Loader from "../../ui/Loader"
+
 import { authFetch } from "@/utils/authFetch";
 dayjs.extend(relativeTime);
 import Loader from "../../ui/Loader";

@@ -13,9 +13,11 @@ import Navbar from "../Navbar";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { DialogDescription } from "@radix-ui/react-dialog";
-import Loader from "../../ui/Loader"
+
 import { authFetch } from "@/utils/authFetch";
 dayjs.extend(relativeTime);
+import Loader from "../../ui/Loader";
+dayjs.extend(relativeTime)
 
 export default function DoctorProfile() {
   const { id: doctorId } = useParams();
@@ -272,6 +274,7 @@ const handleSubmitStory = async () => {
     // return <div className="p-10 text-center text-lg">Loading doctor profile...</div>;
     return <Loader />; // Use your Loader component here
   }
+  if(!doctor) return <Loader />
 
   return (
     <>

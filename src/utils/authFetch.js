@@ -47,7 +47,7 @@ export const authFetch = async (url, options = {}) => {
     console.error('Session expired. Please log in again.');
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    window.location.href = '/login';
+    window.location.href = '#/login';
     throw err;
   }
 };

@@ -17,13 +17,20 @@ import user4 from "../assets/profile-pictures/user4.jpg";
 import user5 from "../assets/profile-pictures/user5.jpg";
 import user6 from "../assets/profile-pictures/user6.jpg";
 
-export const navItems = [
-  { label: "Features", href: "#" },
-  { label: "Workflow", href: "#" },
-  { label: "Pricing", href: "#" },
-  { label: "Testimonials", href: "#" },
-];
+// export const navItems = [
+//   { label: "Features", href: "#" },
+//   { label: "Workflow", href: "#" },
+//   { label: "Pricing", href: "#" },
+//   { label: "Testimonials", href: "#" },
+// ];
 
+export const navItems = [
+  { label: "Dashboard", href: "#" },
+  { label: "Appointments", href: "#" },
+  { label: "Services", href: "#" },
+  { label: "About", href: "#" },
+  { label: "Contact", href: "#" },
+];
 
 
 export const qrCode = [

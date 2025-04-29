@@ -194,8 +194,8 @@ const Navbar = () => {
           
           <div className="hidden lg:flex justify-center space-x-12 items-center">
             <div className="hidden lg:flex justify-center space-x-4 items-center">
-              <ul>
-                {userName ? userName : "Research"}
+              <ul onClick={() => navigate("/user-dashboard/:username")} className="cursor-pointer">
+                {userName ? userName : "Research"}  
               </ul>
               {!userName ? (
                 <button
@@ -207,9 +207,10 @@ const Navbar = () => {
               ) : (
                 <button
                   onClick={() => {
+
                     localStorage.removeItem("user");
                     setUserName(null);
-
+                 
                   }}
                   className="bg-red-500 text-white py-2 px-3 rounded-md"
                 >

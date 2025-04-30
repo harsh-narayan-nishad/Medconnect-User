@@ -65,8 +65,8 @@ export default function DoctorProfile() {
       const fetchSlots = async () => {
         try {
           const formattedDate = dayjs(selectedDate).format("YYYY-MM-DD");
-          // const res = await fetch(`https://backend-453n.onrender.com/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`);
-          const res = await fetch(`http://localhost:5000/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`);
+          const res = await fetch(`https://backend-453n.onrender.com/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`);
+          // const res = await fetch(`http://localhost:5000/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`);
           const data = await res.json();
           setSlots(data.slots || []);
         } catch (err) {

@@ -37,7 +37,7 @@
 // export default DoctorSearch;
 
 
-import Navbar from "../DoctorSearchNavbar";
+import Navbar from "../Navbar";
 import Footer from "../Footer";
 import DocterCard from "../../ui/Cards/DoctorsList";
 import { useLocation } from "react-router-dom";

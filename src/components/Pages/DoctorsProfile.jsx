@@ -23,7 +23,7 @@ export default function DoctorProfile() {
   const [doctor, setDoctor] = useState(null);
   const [stories, setStories] = useState([]);
   const [slots, setSlots] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedSlot, setSelectedSlot] = useState(null);
   const [showDialog, setShowDialog] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -65,7 +65,8 @@ export default function DoctorProfile() {
       const fetchSlots = async () => {
         try {
           const formattedDate = dayjs(selectedDate).format("YYYY-MM-DD");
-          const res = await fetch(`https://backend-453n.onrender.com/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`);
+          // const res = await fetch(`https://backend-453n.onrender.com/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`);
+          const res = await fetch(`http://localhost:5000/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`);
           const data = await res.json();
           setSlots(data.slots || []);
         } catch (err) {
@@ -77,106 +78,6 @@ export default function DoctorProfile() {
     }
   }, [selectedDate, doctorId]);
 
-  // const handleConfirmAppointment = async () => {
-  //   setLoading(true);
-  //   try {
-  //     const token = localStorage.getItem("token");
-  //     const res = await fetch("https://backend-453n.onrender.com/api/appointments/request", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       body: JSON.stringify({
-  //         doctorId,
-  //         date: dayjs(selectedDate).format("YYYY-MM-DD"),
-  //         startTime: selectedSlot,
-  //       }),
-  //     });
-
-  //     const data = await res.json();
-
-  //     if (res.ok) {
-  //       toast({
-  //         title: "Appointment Requested",
-  //         description: `Your request has been sent for ${selectedSlot}`,
-  //       });
-  //       setSelectedSlot(null);
-  //     } else {
-  //       toast({
-  //         title: "Failed to Send Request",
-  //         description: data.message || "Something went wrong.",
-  //         variant: "destructive",
-  //       });
-  //     }
-  //   } catch (err) {
-  //     console.error("Error:", err);
-  //     toast({
-  //       title: "Error",
-  //       description: "Something went wrong.",
-  //       variant: "destructive",
-  //     });
-  //   } finally {
-  //     setLoading(false);
-  //     setShowDialog(false);
-  //   }
-  // };
-
-  // const handleSubmitStory = async () => {
-  //   if (!visitedFor || recommend === null || !storyText) {
-  //     return toast({
-  //       title: "Missing Fields",
-  //       description: "Please fill out all fields before submitting.",
-  //       variant: "destructive",
-  //     });
-  //   }
-  
-  //   setSubmitting(true);
-  //   try {
-  //     const token = localStorage.getItem("token");
-  //     const res = await fetch("https://backend-453n.onrender.com/api/stories/add", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       body: JSON.stringify({
-  //         doctorId,
-  //         visitedFor,
-  //         recommend,
-  //         story: storyText,
-  //       }),
-  //     });
-  
-  //     const data = await res.json();
-  
-  //     if (res.ok) {
-  //       toast({
-  //         title: "Story Submitted",
-  //         description: "Thanks for sharing your experience!",
-  //       });
-  //       setVisitedFor("");
-  //       setRecommend(null);
-  //       setStoryText("");
-  //       setStories((prev) => [data.story, ...prev]); // optimistically update UI
-  //     } else {
-  //       toast({
-  //         title: "Failed to submit story",
-  //         description: data.message || "Please try again.",
-  //         variant: "destructive",
-  //       });
-  //     }
-  //   } catch (err) {
-  //     console.error(err);
-  //     toast({
-  //       title: "Error",
-  //       description: "Something went wrong. Please try again.",
-  //       variant: "destructive",
-  //     });
-  //   } finally {
-  //     setSubmitting(false);
-  //   }
-  // };
   const handleConfirmAppointment = async () => {
     setLoading(true);
     try {
@@ -362,25 +263,49 @@ const handleSubmitStory = async () => {
                     {selectedDate && (
                       <div className="mt-6">
                         <h3 className="font-medium mb-3">Available Time Slots</h3>
-                        <div className="grid grid-cols-3 gap-2">
-                          {slots.map(({ startTime, status }) => (
-                            <button
-                              key={startTime}
-                              disabled={status === "booked"}
-                              onClick={() => {
-                                setSelectedSlot(startTime);
-                                setShowDialog(true);
-                              }}
-                              className={`py-2 px-4 text-sm border rounded-md transition-colors ${
-                                status === "booked"
-                                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                                  : "hover:bg-muted"
-                              } ${selectedSlot === startTime ? "bg-primary text-white" : ""}`}
-                            >
-                              {startTime}
-                            </button>
-                          ))}
-                        </div>
+                        {["morning", "afternoon", "evening"].map((period) => {
+                          const labelMap = {
+                            morning: "Morning (6 AM - 12 PM)",
+                            afternoon: "Afternoon (12 PM - 5 PM)",
+                            evening: "Evening (5 PM - 9 PM)",
+                          };
+                        
+                          const periodSlots = slots.filter(({ startTime }) => {
+                            const hour = parseInt(startTime.split(":")[0]);
+                            if (period === "morning") return hour >= 6 && hour < 12;
+                            if (period === "afternoon") return hour >= 12 && hour < 17;
+                            if (period === "evening") return hour >= 17 && hour < 21;
+                            return false;
+                          });
+                          
+                        
+                          if (periodSlots.length === 0) return null;
+                        
+                          return (
+                            <div key={period} className="mb-4">
+                              <h4 className="text-sm font-semibold mb-2">{labelMap[period]}</h4>
+                              <div className="grid grid-cols-3 gap-2">
+                                {periodSlots.map(({ startTime, status }) => (
+                                  <button
+                                    key={startTime}
+                                    disabled={status === "booked"}
+                                    onClick={() => {
+                                      setSelectedSlot(startTime);
+                                      setShowDialog(true);
+                                    }}
+                                    className={`py-2 px-4 text-sm border rounded-md transition-colors ${
+                                      status === "booked"
+                                        ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                                        : "hover:bg-muted"
+                                    } ${selectedSlot === startTime ? "border-primary" : ""}`}
+                                  >
+                                    {startTime}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
                     )}
 

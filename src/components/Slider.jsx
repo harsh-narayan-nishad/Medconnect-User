@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 // import { qrCode } from "../constants/index";
 import Qrcodeimg from "./QrCodeGenerator";
 import Appointment from "./AppointmentsSection";
+import PdfUpload from "./PdfUpload";
 
 const Slider = () => {
   const [activeTab, setActiveTab] = useState('profile');
@@ -31,7 +32,9 @@ const Slider = () => {
 
       case 'documents':
 
-        return <div>This is Documents content.</div>;
+        return <div >
+           <PdfUpload />
+        </div>;
 
       case 'appointments':
 

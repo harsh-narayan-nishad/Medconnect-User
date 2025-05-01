@@ -65,8 +65,17 @@ export default function DoctorProfile() {
       const fetchSlots = async () => {
         try {
           const formattedDate = dayjs(selectedDate).format("YYYY-MM-DD");
-          const res = await fetch(`https://backend-453n.onrender.com/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`);
-          // const res = await fetch(`http://localhost:5000/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`);
+          const token = localStorage.getItem("token");
+          const res = await fetch(`https://backend-453n.onrender.com/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`,{
+            headers: {
+              ...(token && { Authorization: `Bearer ${token}` }),
+            },
+          });
+          // const res = await fetch(`http://localhost:5000/api/appointments/slots?doctorId=${doctorId}&date=${formattedDate}`,{
+          //   headers: {
+          //     ...(token && { Authorization: `Bearer ${token}` }),
+          //   },
+          // });
           const data = await res.json();
           setSlots(data.slots || []);
         } catch (err) {
@@ -168,6 +177,12 @@ const handleSubmitStory = async () => {
     setSubmitting(false);
   }
 };
+
+const handleJoin = () => {
+  // Join logic, e.g., navigate to meeting room or trigger video call
+  console.log("Joining your appointment...");
+};
+
 
 
   if (!doctor) {
@@ -277,30 +292,40 @@ const handleSubmitStory = async () => {
                             if (period === "evening") return hour >= 17 && hour < 21;
                             return false;
                           });
-                          
-                        
+
                           if (periodSlots.length === 0) return null;
-                        
+
+                          
                           return (
                             <div key={period} className="mb-4">
                               <h4 className="text-sm font-semibold mb-2">{labelMap[period]}</h4>
                               <div className="grid grid-cols-3 gap-2">
-                                {periodSlots.map(({ startTime, status }) => (
-                                  <button
-                                    key={startTime}
-                                    disabled={status === "booked"}
-                                    onClick={() => {
-                                      setSelectedSlot(startTime);
-                                      setShowDialog(true);
-                                    }}
-                                    className={`py-2 px-4 text-sm border rounded-md transition-colors ${
-                                      status === "booked"
-                                        ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                                        : "hover:bg-muted"
-                                    } ${selectedSlot === startTime ? "border-primary" : ""}`}
-                                  >
-                                    {startTime}
-                                  </button>
+                                {periodSlots.map(({ startTime, status}) => (
+                                  <div key={startTime}>
+                                    {status === "mine" ? (
+                                      <button
+                                        onClick={handleJoin}
+                                        className="py-2 px-4 text-sm border w-full rounded-md bg-[#9ffd9f] text-[#3d3d3d] hover:bg-[#4cfc4c] hover:text-[#000000] transition-colors"
+                                      >
+                                        Join
+                                      </button>
+                                    ) : (
+                                      <button
+                                        disabled={status === "booked"}
+                                        onClick={() => {
+                                          setSelectedSlot(startTime);
+                                          setShowDialog(true);
+                                        }}
+                                        className={`py-2 px-4 text-sm w-full border rounded-md transition-colors ${
+                                          status === "booked"
+                                            ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                                            : "hover:bg-muted"
+                                        } ${selectedSlot === startTime ? "border-primary" : ""}`}
+                                      >
+                                        {startTime}
+                                      </button>
+                                    )}
+                                  </div>
                                 ))}
                               </div>
                             </div>
@@ -385,6 +410,7 @@ const handleSubmitStory = async () => {
                     <DialogHeader>
                       <DialogTitle>Share Your Story</DialogTitle>
                     </DialogHeader>
+                    
                     <div className="grid gap-4 py-4">
                       <div className="grid gap-2">
                         <label className="text-sm font-medium">Visited For</label>
@@ -433,6 +459,7 @@ const handleSubmitStory = async () => {
                         />
                       </div>
                     </div>
+
                     <DialogFooter>
                       <Button onClick={handleSubmitStory} disabled={submitting}>
                         {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Submit Story"}

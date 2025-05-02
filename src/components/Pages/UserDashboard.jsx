@@ -11,7 +11,7 @@ const UserDashboard = () => {
   return (
     <>
       <Navbar />
-      <div className="w-[100vw] mx-auto">
+      <div className="w-[100%] mx-auto">
         <ProfilePhoto />
       </div>
 

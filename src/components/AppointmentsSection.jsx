@@ -1,163 +1,312 @@
-import React, { useState } from "react";
+// import React, { useState, useEffect } from "react";
+
+// const AppointmentTable = () => {
+//   const [appointments, setAppointments] = useState([]);
+//   const [filters, setFilters] = useState([]);
+//   const [selectedDate, setSelectedDate] = useState("");
+//   const [submissionDate, setsubmissionDate] = useState("");
+//   const [statusFilter, setStatusFilter] = useState({
+//     completed: false,
+//     confirmed: false,
+//     pending: false,
+//   });
+
+//   // Fetch appointments from backend
+//   useEffect(() => {
+//     const fetchAppointments = async () => {
+//       try {
+//         const res = await fetch("https://backend-453n.onrender.com/api/user/dashboard/appointments", {
+//           method: "GET",
+//           headers: {
+//             "Content-Type": "application/json",
+//             Authorization: `Bearer ${localStorage.getItem("token")}`,
+//           },
+//         });
+
+//         if (!res.ok) {
+//           throw new Error("Failed to fetch appointments");
+//         }
+
+//         const data = await res.json();
+//         setAppointments(data.appointments || []);
+//       } catch (err) {
+//         console.error("Error fetching appointments:", err);
+//       }
+//     };
+
+//     fetchAppointments();
+//   }, []);
+
+//   // Filter logic
+//   const addFilter = (value) => {
+//     if (!filters.includes(value)) setFilters([...filters, value]);
+//   };
+
+//   const deleteAllFilters = () => setFilters([]);
+
+//   const toggleStatusFilter = (key) =>
+//     setStatusFilter((prev) => ({ ...prev, [key]: !prev[key] }));
+
+//   const filteredAppointments = appointments.filter((appt) => {
+//     if (
+//       filters.length &&
+//       !filters.some((f) =>
+//         Object.values(appt).some((v) =>
+//           String(v).toLowerCase().includes(f.toLowerCase())
+//         )
+//       )
+//     )
+//       return false;
+
+//       if (selectedDate && new Date(appt.date).toISOString().split("T")[0] !== selectedDate){
+//         return false;
+//       }
+
+//     if (
+//       (statusFilter.completed && appt.status.toLowerCase() !== "completed") ||
+//       (statusFilter.confirmed && appt.status.toLowerCase() !== "accepted") ||
+//       (statusFilter.pending && appt.status.toLowerCase() !== "pending")
+//     ){
+//       return false;
+//     }
+
+//     return true;
+//   });
+
+//   return (
+//     <div className="bg-white rounded-xl p-6">
+//       {/* Filter Controls */}
+//       <div className="flex flex-wrap gap-4 mb-4 justify-between items-center">
+//         <div className="flex flex-wrap gap-4">
+//           {["Completed", "Confirmed", "Pending"].map((key) => (
+//             <label
+//               key={key}
+//               className="flex items-center gap-2 text-sm text-gray-600"
+//             >
+//               <input
+//                 type="checkbox"
+//                 checked={statusFilter[key]}
+//                 onChange={() => toggleStatusFilter(key)}
+//                 className="accent-orange-500"
+//               />
+//               {key === "notConfirmed"
+//                 ? "Not Confirmed"
+//                 : key.charAt(0).toUpperCase() + key.slice(1)}
+//             </label>
+//           ))}
+//           <input
+//             type="date"
+//             className="border rounded-md px-3 py-1 text-sm"
+//             value={selectedDate}
+//             onChange={(e) => setSelectedDate(e.target.value)}
+//           />
+//         </div>
+
+//         <div className="flex items-center gap-2">
+//           <input
+//             type="text"
+//             placeholder="Search filter..."
+//             className="border px-3 py-1 rounded-md text-sm"
+//             onKeyDown={(e) => {
+//               if (e.key === "Enter") {
+//                 addFilter(e.target.value);
+//                 e.target.value = "";
+//               }
+//             }}
+//           />
+//           <button
+//             onClick={deleteAllFilters}
+//             className="text-red-600 text-sm font-semibold"
+//           >
+//             Clear Filters
+//           </button>
+//         </div>
+//       </div>
+
+//       {/* Filter Chips */}
+//       {filters.length > 0 && (
+//         <div className="flex flex-wrap gap-2 mb-4">
+//           {filters.map((f, i) => (
+//             <span
+//               key={i}
+//               className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium"
+//             >
+//               {f}
+//             </span>
+//           ))}
+//         </div>
+//       )}
+
+//       {/* Appointment Table */}
+//       <div className="overflow-x-auto">
+//         <table className="w-full text-sm border-collapse">
+//           <thead className="bg-orange-500 text-white">
+//             <tr>
+//               {["Submission Date", "Appointment Date" ,"Time", "Doctor", "Visited For", "Status"].map(
+//                 (head, i) => (
+//                   <th
+//                     key={i}
+//                     className="p-2 text-left border border-orange-600"
+//                   >
+//                     {head}
+//                   </th>
+//                 )
+//               )}
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {filteredAppointments.length ? (
+//               filteredAppointments.map((appt, i) => (
+//                 <tr key={i} className="hover:bg-orange-50 transition-colors">
+//                   <td className="p-2 border">{appt.submissionDate}</td>
+//                   <td className="p-2 border">{appt.date}</td>
+//                   <td className="p-2 border">{appt.time}</td>
+//                   <td className="p-2 border">{appt.doctorName}</td>
+//                   <td className="p-2 border">{appt.visitedFor}</td>
+//                   <td
+//                     className={`p-2 border capitalize font-medium ${
+//                       appt.status.toLowerCase() === "completed"
+//                         ? "text-green-600"
+//                         : appt.status.toLowerCase() === "accepted"
+//                         ? "text-yellow-600"
+//                         : "text-blue-600"
+//                     }`}
+//                   >
+//                     {appt.status}
+//                   </td>
+//                 </tr>
+//               ))
+//             ) : (
+//               <tr>
+//                 <td colSpan="5" className="text-center p-4 text-gray-500">
+//                   No matching appointments found.
+//                 </td>
+//               </tr>
+//             )}
+//           </tbody>
+//         </table>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default AppointmentTable;
+
+
+import React, { useState, useEffect } from "react";
 
 const AppointmentTable = () => {
+  const [appointments, setAppointments] = useState([]);
   const [filters, setFilters] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(""); // ✅ date state
+  const [selectedDate, setSelectedDate] = useState("");
   const [statusFilter, setStatusFilter] = useState({
-    visited: false,
-    scheduled: false,
-    notConfirmed: false,
+    completed: false,
+    confirmed: false,
+    pending: false,
   });
 
-  const appointments = [
-    {
-      date: "2025-05-01",
-      time: "10:00 - 10:30",
-      doctor: "Dr. A Sharma",
-      test: "CBC",
-      disease: "Anemia",
-      status: "booked",
-      email: "user1@example.com",
-    },
-    {
-      date: "2024-05-01",
-      time: "07:00 - 07:30",
-      doctor: "Dr. Prasoon Rawat",
-      test: "blood test",
-      disease: "Headache",
-      status: "booked",
-      email: "user1@example.com",
-    },
-    {
-      date: "2025-05-01",
-      time: "11:00 - 11:30",
-      doctor: "Dr. B Gupta",
-      test: "X-Ray",
-      disease: "Chest Pain",
-      status: "visited",
-      email: "user2@example.com",
-    },
-    {
-      date: "2025-05-01",
-      time: "11:00 - 11:30",
-      doctor: "Dr. B Gupta",
-      test: "X-Ray",
-      disease: "Chest Pain",
-      status: "visited",
-      email: "user2@example.com",
-    },
-    {
-      date: "2025-05-01",
-      time: "11:00 - 11:30",
-      doctor: "Dr. B Gupta",
-      test: "X-Ray",
-      disease: "Chest Pain",
-      status: "visited",
-      email: "user2@example.com",
-    },
-    {
-      date: "2025-05-01",
-      time: "11:00 - 11:30",
-      doctor: "Dr. B Gupta",
-      test: "X-Ray",
-      disease: "Chest Pain",
-      status: "visited",
-      email: "user2@example.com",
-    },
-    {
-      date: "2025-05-01",
-      time: "10:00 - 10:30",
-      doctor: "Dr. A Sharma",
-      test: "CBC",
-      disease: "Anemia",
-      status: "not confirmed",
-      email: "user1@example.com",
-    },
-  ];
+  // Fetch appointments from backend
+  useEffect(() => {
+    const fetchAppointments = async () => {
+      try {
+        const res = await fetch("https://backend-453n.onrender.com/api/user/dashboard/appointments", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+
+        if (!res.ok) throw new Error("Failed to fetch appointments");
+
+        const data = await res.json();
+        setAppointments(data.appointments || []);
+      } catch (err) {
+        console.error("Error fetching appointments:", err);
+      }
+    };
+
+    fetchAppointments();
+  }, []);
 
   const addFilter = (value) => {
     if (!filters.includes(value)) setFilters([...filters, value]);
   };
 
-  const deleteAllFilters = () => {
-    setFilters([]);
-  };
+  const deleteAllFilters = () => setFilters([]);
 
-  const toggleStatusFilter = (statusKey) => {
-    setStatusFilter((prev) => ({ ...prev, [statusKey]: !prev[statusKey] }));
+  const toggleStatusFilter = (key) => {
+    setStatusFilter((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   const filteredAppointments = appointments.filter((appt) => {
+    // Text filter
     if (
-      filters.length > 0 &&
-      !filters.some((filter) =>
-        Object.values(appt).some((val) =>
-          val.toLowerCase().includes(filter.toLowerCase())
+      filters.length &&
+      !filters.some((f) =>
+        Object.values(appt).some((v) =>
+          String(v).toLowerCase().includes(f.toLowerCase())
         )
       )
     )
       return false;
 
-    if (selectedDate && appt.date !== selectedDate) return false;
-
+    // Date filter
     if (
-      (statusFilter.visited && appt.status !== "visited") ||
-      (statusFilter.scheduled && appt.status !== "booked") ||
-      (statusFilter.notConfirmed && appt.status !== "not confirmed")
-    )
+      selectedDate &&
+      new Date(appt.date).toISOString().split("T")[0] !== selectedDate
+    ) {
       return false;
+    }
+
+    // Status filter
+    const activeStatuses = Object.keys(statusFilter).filter((key) => statusFilter[key]);
+    if (activeStatuses.length > 0) {
+      const statusMap = {
+        completed: "completed",
+        confirmed: "accepted",
+        pending: "pending",
+      };
+      if (!activeStatuses.some((key) => appt.status.toLowerCase() === statusMap[key])) {
+        return false;
+      }
+    }
 
     return true;
   });
 
   return (
-    <div className="p-4 bg-white rounded-md">
+    <div className="bg-white rounded-xl p-6">
       {/* Filter Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
-        <div className="flex items-center gap-4">
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={statusFilter.visited}
-              onChange={() => toggleStatusFilter("visited")}
-            />
-            Visited
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={statusFilter.scheduled}
-              onChange={() => toggleStatusFilter("scheduled")}
-            />
-            Booked
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={statusFilter.notConfirmed}
-              onChange={() => toggleStatusFilter("notConfirmed")}
-            />
-            Not Confirmed
-          </label>
-
-          {/* ✅ Date Picker */}
-          <label className="flex items-center gap-2">
-            <span className="text-sm font-medium">Date:</span>
-            <input
-              type="date"
-              className="border px-2 py-1 rounded-md"
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-            />
-          </label>
+      <div className="flex flex-wrap gap-4 mb-4 justify-between items-center">
+        <div className="flex flex-wrap gap-4">
+          {["completed", "confirmed", "pending"].map((key) => (
+            <label
+              key={key}
+              className="flex items-center gap-2 text-sm text-gray-600 capitalize"
+            >
+              <input
+                type="checkbox"
+                checked={statusFilter[key]}
+                onChange={() => toggleStatusFilter(key)}
+                className="accent-orange-500"
+              />
+              {key}
+            </label>
+          ))}
+          <input
+            type="date"
+            className="border rounded-md px-3 py-1 text-sm"
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+          />
         </div>
 
-        {/* Filter text */}
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
           <input
             type="text"
-            placeholder="Add filter"
-            className="border px-2 py-1 rounded-md"
+            placeholder="Search filter..."
+            className="border px-3 py-1 rounded-md text-sm"
             onKeyDown={(e) => {
               if (e.key === "Enter") {
                 addFilter(e.target.value);
@@ -167,9 +316,9 @@ const AppointmentTable = () => {
           />
           <button
             onClick={deleteAllFilters}
-            className="text-red-600 font-medium"
+            className="text-red-600 text-sm font-semibold"
           >
-            Delete All
+            Clear Filters
           </button>
         </div>
       </div>
@@ -180,7 +329,7 @@ const AppointmentTable = () => {
           {filters.map((f, i) => (
             <span
               key={i}
-              className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm"
+              className="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium"
             >
               {f}
             </span>
@@ -188,47 +337,49 @@ const AppointmentTable = () => {
         </div>
       )}
 
-      {/* Table */}
+      {/* Appointment Table */}
       <div className="overflow-x-auto">
-  <table className="w-full table-auto border-gray-300 text-sm">
-          <thead className="bg-orange-300">
+        <table className="w-full text-sm border-collapse">
+          <thead className="bg-orange-500 text-white">
             <tr>
-              <th className="p-2 border border-gray-300">Date</th>
-              <th className="p-2 border border-gray-300">Time</th>
-              <th className="p-2 border border-gray-300">Doctor</th>
-              <th className="p-2 border border-gray-300">Test</th>
-              <th className="p-2 border border-gray-300">Disease</th>
-              <th className="p-2 border border-gray-300">Status</th>
-              <th className="p-2 border border-gray-300 text-center">Email</th>
+              {["Submission Date", "Appointment Date", "Time", "Doctor", "Visited For", "Status"].map(
+                (head, i) => (
+                  <th key={i} className="p-2 text-left border border-orange-600">
+                    {head}
+                  </th>
+                )
+              )}
             </tr>
           </thead>
           <tbody>
-            {filteredAppointments.map((appt, index) => (
-              <tr key={index} className="hover:bg-orange-100">
-                <td className="p-2 border border-gray-300">{appt.date}</td>
-                <td className="p-2 border border-gray-300">{appt.time}</td>
-                <td className="p-2 border border-gray-300">{appt.doctor}</td>
-                <td className="p-2 border border-gray-300">{appt.test}</td>
-                <td className="p-2 border border-gray-300">{appt.disease}</td>
-                <td
-                  className={`p-2 border border-gray-300 capitalize ${
-                    appt.status === "visited"
-                      ? "text-green-600"
-                      : appt.status === "not confirmed"
-                      ? "text-orange-600"
-                      : "text-blue-600"
-                  }`}
-                >
-                  {appt.status}
-                </td>
-                <td className="p-2 border border-gray-300 text-center">
-                  <a href={`mailto:${appt.email}`}></a>
-                </td>
-              </tr>
-            ))}
-            {filteredAppointments.length === 0 && (
+            {filteredAppointments.length ? (
+              filteredAppointments.map((appt, i) => (
+                <tr key={i} className="hover:bg-orange-50 transition-colors">
+                  <td className="p-2 border">
+                    {new Date(appt.submissionDate).toLocaleDateString()}
+                  </td>
+                  <td className="p-2 border">
+                    {new Date(appt.date).toLocaleDateString()}
+                  </td>
+                  <td className="p-2 border">{appt.time}</td>
+                  <td className="p-2 border">{appt.doctorName}</td>
+                  <td className="p-2 border">{appt.visitedFor}</td>
+                  <td
+                    className={`p-2 border capitalize font-medium ${
+                      appt.status.toLowerCase() === "completed"
+                        ? "text-green-600"
+                        : appt.status.toLowerCase() === "accepted"
+                        ? "text-yellow-600"
+                        : "text-blue-600"
+                    }`}
+                  >
+                    {appt.status}
+                  </td>
+                </tr>
+              ))
+            ) : (
               <tr>
-                <td colSpan="7" className="text-center p-4 text-gray-800 border border-gray-300">
+                <td colSpan="6" className="text-center p-4 text-gray-500">
                   No matching appointments found.
                 </td>
               </tr>

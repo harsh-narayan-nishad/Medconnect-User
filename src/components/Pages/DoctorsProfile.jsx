@@ -25,6 +25,7 @@ export default function DoctorProfile() {
   const [slots, setSlots] = useState([]);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedSlot, setSelectedSlot] = useState(null);
+  const [visitingFor, setVisitingFor] = useState("Consultation");
   const [showDialog, setShowDialog] = useState(false);
   const [loading, setLoading] = useState(false);
   const [visitedFor, setVisitedFor] = useState("");
@@ -94,6 +95,7 @@ export default function DoctorProfile() {
         method: "POST",
         body: JSON.stringify({
           doctorId,
+          visitingFor,
           date: dayjs(selectedDate).format("YYYY-MM-DD"),
           startTime: selectedSlot,
         }),
@@ -142,7 +144,7 @@ const handleSubmitStory = async () => {
       method: "POST",
       body: JSON.stringify({
         doctorId,
-        visitedFor,
+        visitedFor: RequestingFor,
         recommended: recommend,
         story: storyText,
       }),
@@ -284,7 +286,7 @@ const handleJoin = () => {
                             afternoon: "Afternoon (12 PM - 5 PM)",
                             evening: "Evening (5 PM - 9 PM)",
                           };
-                        
+
                           const periodSlots = slots.filter(({ startTime }) => {
                             const hour = parseInt(startTime.split(":")[0]);
                             if (period === "morning") return hour >= 6 && hour < 12;
@@ -305,6 +307,7 @@ const handleJoin = () => {
                                     {status === "mine" ? (
                                       <button
                                         onClick={handleJoin}
+                                        disabled={!isJoinEnabled}
                                         className="py-2 px-4 text-sm border w-full rounded-md bg-[#9ffd9f] text-[#3d3d3d] hover:bg-[#4cfc4c] hover:text-[#000000] transition-colors"
                                       >
                                         Join
@@ -340,6 +343,16 @@ const handleJoin = () => {
                           <DialogTitle>Confirm Appointment</DialogTitle>
                         </DialogHeader>
                         <DialogDescription>
+                          <div className="grid gap-2">
+                            <label className="text-sm font-medium">Requesting For</label>
+                            <input
+                              type="text"
+                              value={visitingFor}
+                              onChange={(e) => setVisitingFor(e.target.value)}
+                              className="border rounded px-3 py-2 text-sm"
+                              placeholder="e.g., Chest pain, fever, etc."
+                            />
+                          </div>
                           You're about to request an appointment with <b>{doctor.fullname}</b> on{" "}
                           <b>{dayjs(selectedDate).format("MMMM D, YYYY")}</b> at <b>{selectedSlot}</b>.
                         </DialogDescription>

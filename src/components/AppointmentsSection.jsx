@@ -380,7 +380,7 @@ const AppointmentTable = () => {
             ) : (
               <tr>
                 <td colSpan="6" className="text-center p-4 text-gray-500">
-                  No matching appointments found.
+                  Loading appointments...
                 </td>
               </tr>
             )}

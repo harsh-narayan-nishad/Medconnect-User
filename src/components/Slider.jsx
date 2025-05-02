@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Qrcodeimg from './QrCodeGenerator';
 import Appointment from './AppointmentsSection'; 
+import Documents from './DocumentsSection'; // Assuming you have a Documents component
 
 const Slider = () => {
   const [activeTab, setActiveTab] = useState('profile');
@@ -64,7 +65,7 @@ const Slider = () => {
         );
 
       case 'documents':
-        return <div className="text-center text-gray-500">No documents uploaded.</div>;
+        return <Documents />; // Render your Documents component here
 
       case 'appointments':
         return <Appointment />;

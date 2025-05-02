@@ -86,7 +86,7 @@ const DocumentsSection = () => {
 
   const fetchDocuments = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/user/dashboard/documents", {
+      const res = await fetch("https://backend-453n.onrender.com/api/user/dashboard/documents", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

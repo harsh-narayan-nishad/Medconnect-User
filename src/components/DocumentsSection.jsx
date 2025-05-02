@@ -79,6 +79,7 @@
 
 
 import React, { useEffect, useState } from "react";
+import Pdfupload from "./PdfUpload";
 
 const DocumentsSection = () => {
   const [documents, setDocuments] = useState([]);
@@ -124,6 +125,7 @@ const DocumentsSection = () => {
   
   return (
     <div className="bg-white rounded-xl p-6">
+        <Pdfupload />
       <h2 className="text-xl font-semibold mb-4 text-gray-700">Your Medical Documents</h2>
 
       {loading ? (

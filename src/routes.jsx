@@ -1,12 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {Routes, Route } from "react-router-dom";
 import Home from "./components/Pages/Home";
 import Login from "./components/LoginSignup/Login";
 import Signup from "./components/LoginSignup/SignUp";
-import DoctorSearch from "./components/Pages/DoctorSearch"
-import UserDashboard from "./components/Pages/UserDashboard"
+import DoctorSearch from "./components/Pages/DoctorSearch";
+import UserDashboard from "./components/Pages/UserDashboard";
 import AppointmentSchedule from "./components/Pages/AppointmentSchedule";
 import ShareQr from "./components/ShareQrCode";
-import DoctorProfile from "./components/Pages/DoctorsProfile"
+import DoctorProfile from "./components/Pages/DoctorsProfile";
+import VideoConfrence from "./components/VideoConfrence";
 
 const AppRoutes = () => {
   return (
@@ -20,10 +21,11 @@ const AppRoutes = () => {
         <Route path = "appointment" element={<AppointmentSchedule />} />
         <Route path = "qr-code-sharing" element = {<ShareQr />} />
         <Route path="/doctors-page/:id" element={<DoctorProfile />} />
- 
+        <Route path = "/video" element ={<VideoConfrence/>} />
+
       </Routes>
     </>
   );
 };
-// 
+
 export default AppRoutes;

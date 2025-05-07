@@ -10,6 +10,7 @@ const SignUp = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
     fullname: "",
+    userID:"",
     email: "",
     phone: "",
     password: "",
@@ -75,6 +76,20 @@ const SignUp = () => {
               value={formData.fullname}
               onChange={handleChange}
               placeholder="John Doe" 
+              className="w-full p-3 border rounded-lg"
+              required
+            />
+          </div>
+
+          {/* User ID */}
+          <div>
+            <label className="block text-gray-700 font-medium mb-2">User ID</label>
+            <input 
+              type="text" 
+              name="userId"
+              // value={formData.userID}
+              onChange={handleChange}
+              placeholder="Please choose user name." 
               className="w-full p-3 border rounded-lg"
               required
             />

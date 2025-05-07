@@ -194,7 +194,7 @@
 
 
 import React, { useState, useEffect } from "react";
-
+// import Loader from "../ui/Loader";
 const AppointmentTable = () => {
   const [appointments, setAppointments] = useState([]);
   const [filters, setFilters] = useState([]);
@@ -380,7 +380,9 @@ const AppointmentTable = () => {
             ) : (
               <tr>
                 <td colSpan="6" className="text-center p-4 text-gray-500">
-                  Loading appointments...
+                    Loading appointments...
+                  {/* <Loader /> */}
+
                 </td>
               </tr>
             )}

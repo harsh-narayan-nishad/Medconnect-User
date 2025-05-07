@@ -1,8 +1,11 @@
 import { CheckCircle2 } from "lucide-react";
 import styled from "styled-components";
 import { pricingOptions } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 const Pricing = () => {
+  const navigate = useNavigate(); // Initialize useNavigate
+
   return (
     <StyledWrapper>
 
@@ -34,12 +37,14 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
-              <a
+              <button
                 href="#"
+                onClick={()=> navigate("/video")}
+
                 className="inline-flex justify-center items-center text-center w-full h-12 p-5 mt-20 tracking-tight text-xl hover:bg-orange-900 border border-orange-900 rounded-lg transition duration-200"
               >
                 Subscribe
-              </a>
+              </button>
             </div>
           </div>
         ))}

@@ -103,7 +103,7 @@ export default function QrCodeGenerator() {
               >
                 Download QR
               </button>
-
+              
               {/* <div className="mt-2 flex gap-2 flex-wrap justify-center">
                 <button
                   onClick={() => shareQR("whatsapp", qr.qrText)}

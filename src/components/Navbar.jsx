@@ -19,7 +19,7 @@ const Navbar = () => {
   const navLinks = [
     { name: "Find Doctor", path: "/find-doctor" },
     { name: "Consult", path: "/consult" },
-    { name: "Get Help", path: "/help" }
+    { name: "Get Help", path: "/help" },
   ];
 
   return (
@@ -48,9 +48,18 @@ const Navbar = () => {
           </div>
 
           <div className="flex-1 flex justify-end items-center space-x-4">
-            <span className="text-gray-600 hidden lg:block cursor-pointer" onClick={() => navigate("/user-dashboard/:username")}>
+            {/* <span className="text-gray-600 hidden lg:block cursor-pointer" onClick={() => navigate("/user-dashboard/:username")}>
             {userName ? `Hi, ` + userName : "Welcome!"}
+            </span> */}
+            <span
+              className="text-gray-600 hidden lg:block cursor-pointer"
+              onClick={() => {
+                if (userName) navigate(`/user-dashboard/${userName}`);
+              }}
+            >
+              {userName ? `Hi, ${userName}` : "Welcome!"}
             </span>
+
             {!userName ? (
               <>
                 <button
@@ -111,7 +120,7 @@ const Navbar = () => {
 
             <div className="w-full flex flex-col space-y-4">
               <div className="text-left py-2 text-gray-600 w-full">
-                 {userName ? `Hi, ` + userName : "Welcome!"}
+                {userName ? `Hi, ` + userName : "Welcome!"}
               </div>
               {!userName ? (
                 <>
@@ -179,8 +188,8 @@ export default Navbar;
 //     <nav className="sticky top-0 z-50 py-3 backdrop-blur-sm border-b border-[#f4f4f4]">
 //       <div className="container px-4 mx-auto relative lg:text-sm">
 //         <div className="flex justify-between items-center">
-//           <div className="cursor-pointer flex items-center flex-shrink-0" 
-//           onClick={() => navigate("/")}> 
+//           <div className="cursor-pointer flex items-center flex-shrink-0"
+//           onClick={() => navigate("/")}>
 //             <img className="h-10 w-10 mr-2" src={logo} alt="Logo" />
 //             <span className="text-xl tracking-tight">Medconnect</span>
 //           </div>
@@ -192,11 +201,11 @@ export default Navbar;
 //               </li>
 //             ))}
 //           </ul>
-          
+
 //           <div className="hidden lg:flex justify-center space-x-12 items-center">
 //             <div className="hidden lg:flex justify-center space-x-4 items-center">
 //               <ul onClick={() => navigate("/user-dashboard/:username")} className="cursor-pointer">
-//                 {userName ? userName : "Research"}  
+//                 {userName ? userName : "Research"}
 //               </ul>
 //               {!userName ? (
 //                 <button
@@ -211,7 +220,7 @@ export default Navbar;
 
 //                     localStorage.removeItem("user");
 //                     setUserName(null);
-                 
+
 //                   }}
 //                   className="bg-red-500 text-white py-2 px-3 rounded-md"
 //                 >
@@ -242,7 +251,7 @@ export default Navbar;
 //             <div className="flex space-x-6">
 //               {!userName ? (
 //                 <>
-//                   <button 
+//                   <button
 //                     onClick={() => navigate("/login")}
 //                     className="py-2 px-3 border rounded-md"
 //                   >

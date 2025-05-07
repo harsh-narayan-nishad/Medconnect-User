@@ -6,11 +6,11 @@ import ProfilePhoto from "../UserProfileDetails";
 import { qrCode } from "../../constants/index";
 import Slider from "../Slider";
 
-
 const UserDashboard = () => {
   return (
     <>
       <Navbar />
+
       <div className="w-[100%] mx-auto">
         <ProfilePhoto />
       </div>
@@ -20,6 +20,7 @@ const UserDashboard = () => {
 
       <div className="max-w-7xl mx-auto  px-6 ">
         <div className="relative mt-20">
+
         <div className="flex flex-wrap mt-10 lg:mt-20">
           </div>
           {/* <div className="flex flex-wrap mt-10 lg:mt-20 bg-purple-400">

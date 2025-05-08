@@ -4,13 +4,18 @@ import Footer from "../Footer";
 import PdfUpload from "../PdfUpload";
 import ProfilePhoto from "../UserProfileDetails";
 import { qrCode } from "../../constants/index";
+<<<<<<< HEAD
 import Slider from "../Slider";
 
+=======
+import SiderData from "../Sider";
+>>>>>>> f1aa93604b3578966f15d0dc49f99e549e25225d
 
 const UserDashboard = () => {
   return (
     <>
       <Navbar />
+<<<<<<< HEAD
       <div className="w-[100%] mx-auto">
         <ProfilePhoto />
       </div>
@@ -53,6 +58,20 @@ const UserDashboard = () => {
 
           <PdfUpload />
         </div> */}
+=======
+      <div className="w-[100vw] mx-auto">
+        <ProfilePhoto />
+      </div>
+
+      <div className="max-w-7xl mx-auto  px-6">
+   
+        
+          <SiderData/>
+
+
+
+
+>>>>>>> f1aa93604b3578966f15d0dc49f99e549e25225d
 
         <Footer />
       </div>

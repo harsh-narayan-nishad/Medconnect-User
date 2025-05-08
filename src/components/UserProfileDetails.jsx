@@ -9,6 +9,7 @@ const UserProfileDetails = () => {
     if (storedUser) {
       setUserName(JSON.parse(storedUser).fullname);
     }
+
   }, []);
 
   return (

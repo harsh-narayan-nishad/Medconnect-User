@@ -194,11 +194,6 @@
 
 
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-
-=======
-// import Loader from "../ui/Loader";
->>>>>>> f1aa93604b3578966f15d0dc49f99e549e25225d
 const AppointmentTable = () => {
   const [appointments, setAppointments] = useState([]);
   const [filters, setFilters] = useState([]);

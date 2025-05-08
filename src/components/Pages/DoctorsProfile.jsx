@@ -308,11 +308,7 @@ const handleJoin = () => {
                                     {status === "mine" ? (
                                       <button
                                         onClick={handleJoin}
-<<<<<<< HEAD
-                                        disabled={!isJoinEnabled}
-=======
                                         // disabled={!isJoinEnabled}
->>>>>>> f1aa93604b3578966f15d0dc49f99e549e25225d
                                         className="py-2 px-4 text-sm border w-full rounded-md bg-[#9ffd9f] text-[#3d3d3d] hover:bg-[#4cfc4c] hover:text-[#000000] transition-colors"
                                       >
                                         Join

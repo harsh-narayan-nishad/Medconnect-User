@@ -6,7 +6,8 @@ import DoctorSearch from "./components/Pages/DoctorSearch"
 import UserDashboard from "./components/Pages/UserDashboard"
 import AppointmentSchedule from "./components/Pages/AppointmentSchedule";
 import ShareQr from "./components/ShareQrCode";
-import DoctorProfile from "./components/Pages/DoctorsProfile"
+import DoctorProfile from "./components/Pages/DoctorsProfile";
+import UserProfile from "./components/Pages/UserProfile";
 
 const AppRoutes = () => {
   return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
         <Route path = "appointment" element={<AppointmentSchedule />} />
         <Route path = "qr-code-sharing" element = {<ShareQr />} />
         <Route path="/doctors-page/:id" element={<DoctorProfile />} />
+        <Route path="/User-page/:id" element={<UserProfile />} />
  
       </Routes>
     </>

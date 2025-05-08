@@ -17,7 +17,7 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: "Find Doctor", path: "/find-doctor" },
+    { name: "Find Doctor", path: "/doctor-search" },
     { name: "Consult", path: "/consult" },
     { name: "Get Help", path: "/help" },
   ];

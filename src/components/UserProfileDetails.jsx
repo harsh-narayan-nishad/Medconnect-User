@@ -23,7 +23,7 @@ const UserProfileDetails = () => {
         </div>
         <p className="name-client">             {userName ? userName : "User Name"} {/* Show user's name */}
 
-          <span>Harsh Narayan Nishad
+          <span>
 
           </span>
         </p>

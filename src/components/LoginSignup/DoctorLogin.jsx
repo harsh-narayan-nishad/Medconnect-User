@@ -7,7 +7,7 @@ import Loader from "../../ui/Loader1";
 
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ email: "", password: "", role: "doctor" });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -105,7 +105,7 @@ const Login = () => {
   {loading ? (
     <>
       <Loader />
-      <span>Logging in</span>
+      <span>Doctor Logging in</span>
     </>
   ) : (
     "Login"
@@ -116,9 +116,6 @@ const Login = () => {
 
         <div className="text-center mt-4">
           <p>Don't have an account? <button onClick={() => navigate("/signup")} className="text-blue-600 hover:underline">Sign Up</button></p>
-        </div>
-        <div className="text-center mt-4">
-          <p>Continue as Doctor? <button onClick={() => navigate("/login-doctor")} className="text-blue-600 hover:underline">Log in</button></p>
         </div>
       </div>
     </div>

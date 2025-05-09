@@ -118,7 +118,7 @@ const Login = () => {
           <p>Don't have an account? <button onClick={() => navigate("/signup")} className="text-blue-600 hover:underline">Sign Up</button></p>
         </div>
         <div className="text-center mt-4">
-          <p>Continue as Doctor? <a href="https://medconnect-doctors.netlify.app/#/signin"><button className="text-blue-600 hover:underline">Log in</button></a> </p>
+          <p>Continue as Doctor? <a href="https://medconnect-doctors.netlify.app"><button className="text-blue-600 hover:underline">Log in</button></a> </p>
         </div>
       </div>
     </div>

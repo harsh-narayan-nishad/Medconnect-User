@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -17,9 +17,11 @@ import { DialogDescription } from "@radix-ui/react-dialog";
 
 import { authFetch } from "@/utils/authFetch";
 import Loader from "../../ui/Loader";
+import { Navigate } from "react-router-dom";
 dayjs.extend(relativeTime)
 
 export default function DoctorProfile() {
+  const navigate = useNavigate();
   const { id: doctorId } = useParams();
   const [doctor, setDoctor] = useState(null);
   const [stories, setStories] = useState([]);
@@ -307,8 +309,10 @@ const handleJoin = () => {
                                   <div key={startTime}>
                                     {status === "mine" ? (
                                       <button
-                                        onClick={handleJoin}
-                                        // disabled={!isJoinEnabled}
+                                      onClick={() => {
+                                        handleJoin();
+                                        navigate("/video");
+                                      }}
                                         className="py-2 px-4 text-sm border w-full rounded-md bg-[#9ffd9f] text-[#3d3d3d] hover:bg-[#4cfc4c] hover:text-[#000000] transition-colors"
                                       >
                                         Join

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 const AppointmentTable = () => {
   const [appointments, setAppointments] = useState([]);

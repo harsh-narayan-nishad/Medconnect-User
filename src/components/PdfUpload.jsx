@@ -17,45 +17,6 @@ const Input = () => {
 
     }
   };
-  // Function to handle file upload
-  // function uploadFile(event) {
-  //   event.preventDefault();
-  //   const fileInput = document.getElementById("file");
-  //   const file = fileInput.files[0];
-  //   const customMessage = message;
-
-  //   if (file && customMessage) {
-  //     const fileUrl = URL.createObjectURL(file);
-
-  //     // Get current date and time
-  //     const now = new Date();
-  //     const year = now.getFullYear();
-  //     const month = String(now.getMonth() + 1).padStart(2, "0");
-  //     const day = String(now.getDate()).padStart(2, "0");
-  //     const hours = String(now.getHours()).padStart(2, "0");
-  //     const minutes = String(now.getMinutes()).padStart(2, "0");
-  //     const seconds = String(now.getSeconds()).padStart(2, "0");
-
-  //     const dateTimeString = `Date: ${year}-${month}-${day} | Time: ${hours}:${minutes}:${seconds}`;
-  //     setDateTime(dateTimeString); // Update the date and time in state
-
-  //     // Update the list of uploaded files
-  //     setPdfs((prevPdfs) => {
-  //       const newPdfs = [...prevPdfs, { name: customMessage, url: fileUrl, date: dateTimeString }];
-  //       return newPdfs.length > 5 ? newPdfs.slice(-5) : newPdfs;
-  //     });
-
-  //     // Reset message input after file is uploaded
-  //     // Reset file input and message after file is uploaded
-  //     fileInput.value = "";  // Clears the file picker
-  //     setIsFileUploaded(false);  // Reset file upload state
-  //     setSelectedFileName(""); // Clear file name
-  //     setMessage("");
-  //   } else {
-  //     alert("Please select a file and enter a message.");
-  //   }
-  // }
-
   async function uploadFile(event) {
     event.preventDefault();
     const fileInput = document.getElementById("file");
@@ -162,48 +123,7 @@ const Input = () => {
     placeholder="Drop your file here... " // Keeps space for label animation
     autoFocus
   />
-
-{/* send button */}
-
-        {/* <button id="sendButton"
-        onClick={uploadFile}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 664 663">
-            <path fill="none" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888" />
-            <path strokeLinejoin="round" strokeLinecap="round" strokeWidth="33.67" stroke="#6c6c6c" d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888" />
-          </svg>
-        </button> */}
-
         </div>
-
-
-{/* 
-<div id="fileContainer" className="mt-4 space-y-2">
-  {pdfs.slice().reverse().map((file, index) => (
-    <div key={index} className="flex items-center justify-between border p-4 rounded shadow-md">
-
-      <div className="text-gray-600 text-sm">{file.date}</div>
-
-   
-      <span className="px-2 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded">
-        Approved
-      </span>
-
-     
-      <a href={file.url} download={`${file.name}`} className="text-blue-500 underline">
-        {file.name}
-      </a>
-
-
-      <div className="text-gray-700 text-sm">Consulting Fees</div>
-
-      <div className="font-semibold text-gray-800">${file.amount}</div>
-
- 
-      <div className="text-gray-500 cursor-pointer">...</div>
-    </div>
-  ))}
-</div> */}
 <div id="fileContainer" className="mt-4 space-y-2">
   {pdfs.slice().reverse().map((file, index) => (
     <div key={index} className="flex items-center justify-between border p-4 rounded shadow-md relative">

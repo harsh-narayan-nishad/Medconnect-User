@@ -1,41 +1,3 @@
-// import Navbar from "../DoctorSearchNavbar";
-// import Footer from "../Footer";
-// import DocterCard from "../../ui/Cards/DoctorsList"
-
-// const DoctorSearch = () => {
-
-//   return (
-//     <div className="bg-[#f4f4f4 px-5">
-//         <Navbar />
-//         <div className="max-w-7xl mx-auto pt-20 px-6">
-//   <div className=""> 
-//     <h1 className="text-blue-500" >Showing result for <span >[]</span>, Location : India </h1>
-//     <h1 className="pb-7">Turn on 'find nearby' for near search</h1>
-//     <div 
-//       className="grid p-4 gap-6 justify-center"
-//       style={{
-//         display: "grid",
-//         gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-//         gridAutoRows: "1fr", // Ensures equal height rows
-//         alignItems: "stretch", // Ensures uniform height
-//       }}
-//     >
-      
-//       {Array(10).fill().map((_, index) => (
-//         <div key={index} className="flex justify-center">
-//           <DocterCard />
-//         </div>
-//       ))}
-//     </div>
-//   </div>
-// </div>
-//         <Footer />
-//     </div>
-//   );
-// };
-
-// export default DoctorSearch;
-
 
 import Navbar from "../Navbar";
 import Footer from "../Footer";
@@ -43,6 +5,8 @@ import DocterCard from "../../ui/Cards/DoctorsList";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
+import Loader1 from "../../ui/DoctorsPageLoader";
+import BottomLoader from "../../ui/DoctorsPageLoader2";
 
 const DoctorSearch = () => {
   const location = useLocation();
@@ -186,10 +150,13 @@ const DoctorSearch = () => {
                 );
               }
             })}
-            {loading && Array(5).fill().map((_, i) => (
-              <div key={i} className="animate-pulse flex flex-col p-4 bg-white rounded-2xl shadow-md w-full max-w-lg h-[300px]" />
+           
+            {loading && Array(6).fill().map((_, i) => (
+              <Loader1 key={i} />
             ))}
           </div>
+          {loading && <BottomLoader />}
+
           {!loading && !hasMore && (
             // <p className="text-center text-gray-400 mt-4">You've reached the end 🎉</p>
             <div className="text-center text-gray-500 py-4 flex flex-col items-center">

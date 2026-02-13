@@ -14,7 +14,6 @@ import Navbar from "../Navbar";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { DialogDescription } from "@radix-ui/react-dialog";
-
 import { authFetch } from "@/utils/authFetch";
 import Loader from "../../ui/Loader";
 import { Navigate } from "react-router-dom";
@@ -185,7 +184,7 @@ const handleSubmitStory = async () => {
 
 const handleJoin = () => {
   // Join logic, e.g., navigate to meeting room or trigger video call
-  console.log("Joining your appointment...");
+  return 
 };
 
 

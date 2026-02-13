@@ -117,6 +117,7 @@ const Login = () => {
         </div>
         <div className="text-center mt-4">
           <p>Continue as Doctor? <a href="https://mediconnect-doctors.netlify.app/"><button className="text-blue-600 hover:underline">Log in</button></a> </p>
+          <p>Continue as Doctor? <a href="https://medconnect-doctors.netlify.app"><button className="text-blue-600 hover:underline">Log in</button></a> </p>
         </div>
       </div>
     </div>

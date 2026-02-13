@@ -4,7 +4,7 @@ import Footer from "../Footer";
 import PdfUpload from "../PdfUpload";
 import ProfilePhoto from "../UserProfileDetails";
 import { qrCode } from "../../constants/index";
-import SiderData from "../Sider";
+import SiderData from "../Slider";
 
 const UserDashboard = () => {
   return (
